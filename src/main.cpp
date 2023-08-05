@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "pros/colors.hpp"
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -9,8 +11,12 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  pros::lcd::initialize();
-  pros::lcd::set_text(1, "Hello PROS User!");
+  pros::screen::set_pen(pros::Color::black);
+  pros::screen::fill_rect(0, 0, 400, 200);
+  pros::screen::set_pen(pros::Color::red);
+  pros::screen::print(TEXT_MEDIUM, 1, "MANKIND IS DEAD");
+  pros::screen::print(TEXT_MEDIUM, 2, "BLOOD IS FUEL");
+  pros::screen::print(TEXT_MEDIUM, 3, "HELL IS FULL");
 }
 
 /**
@@ -58,14 +64,16 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  pros::MotorGroup left_motors({1, 2, 3});
-  pros::MotorGroup right_motors({-11, -12, -13});
+  pros::MotorGroup left_motors({1, -2, 3});
+  pros::MotorGroup right_motors({-11, -12, 14});
   pros::Controller controller(pros::E_CONTROLLER_MASTER);
+  int start_time = pros::millis();
+  int end_time = start_time + 1000 * 60;
 
-  while (true) {
+  while (pros::millis() < end_time) {
     // Move the motors at maximum speed
     if (!controller.get_digital(
-            pros::E_CONTROLLER_DIGITAL_A)) {  // Emergency stop functionality
+            pros::E_CONTROLLER_DIGITAL_A)) {  // Emergency stop
       left_motors.move(127);
       right_motors.move(127);
     }
@@ -79,10 +87,12 @@ void opcontrol() {
     std::vector<double> right_motor_temps = right_motors.get_temperature_all();
 
     // Print data to stdout in csv format
-    printf("%i, %i, %i, %i, %i, %i, %f, %f, %f, %f, %f, %f,",
+    printf("%i, %i, %i, %i, %i, %i, %f, %f, %f, %f, %f, %f, %i \n",
            left_motor_draw[0], left_motor_draw[1], left_motor_draw[2],
            right_motor_draw[0], right_motor_draw[1], right_motor_draw[2],
            left_motor_temps[0], left_motor_temps[1], left_motor_temps[2],
-           right_motor_temps[0], right_motor_temps[1], right_motor_temps[2]);
+           right_motor_temps[0], right_motor_temps[1], right_motor_temps[2],
+           pros::millis());
+    pros::delay(50);  // The brain terminal cannot handle faster than this
   }
 }
