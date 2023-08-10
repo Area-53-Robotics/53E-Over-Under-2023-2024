@@ -13,7 +13,7 @@
  */
 void initialize() {
   lib::Catapult my_catapult;
-  my_catapult.start_loop();
+  my_catapult.init();
 
   pros::screen::set_pen(pros::Color::black);
   pros::screen::fill_rect(0, 0, 400, 200);

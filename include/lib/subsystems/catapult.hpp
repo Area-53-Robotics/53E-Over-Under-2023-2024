@@ -1,16 +1,18 @@
 #pragma once
-#include <cstdio>
-
 #include "lib/utils/state_machine.hpp"
+#include "pros/motors.hpp"
 
 namespace lib {
 
-enum class State { Idle, Loading, Ready, Firing };
-class Catapult : public StateMachine<State> {
+enum class CatapultState { Idle, Loading, Ready, Firing };
+
+class Catapult : public lib::StateMachine<CatapultState> {
  public:
   Catapult();
   ~Catapult();
 
+ private:
+ protected:
   void loop() override;
 };
 

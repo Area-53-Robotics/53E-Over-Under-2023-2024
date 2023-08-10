@@ -1,11 +1,14 @@
 #include "lib/subsystems/catapult.hpp"
 
+#include <cstdio>
+
 namespace lib {
 
+Catapult::Catapult(){};
+Catapult::~Catapult(){};
 void Catapult::loop() {
-  if (current_state == State::Idle) {
-    printf("Just chillin\n");
+  if (get_state() == CatapultState::Idle) {
+    printf("just chillin\n");
   }
-}
-
+};
 }  // namespace lib

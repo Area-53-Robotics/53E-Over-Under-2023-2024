@@ -3,19 +3,40 @@
 
 namespace lib {
 
-template <class State>
+template <typename State, State init_state = State::Idle>
 class StateMachine {
- public:
-  State get_state();
-  void set_state(State new_state);
-  virtual void loop() = 0;
-  void start_loop();
-
-  State current_state;
-
- protected:
  private:
+  State state = init_state;
   pros::Mutex state_lock;
   pros::Task* task{nullptr};
+
+ public:
+  StateMachine() {}
+
+  void init() {
+    if (task == nullptr) {
+      task = new pros::Task([this] {
+        while (true) {
+          loop();
+        }
+      });
+    }
+  };
+
+  virtual void loop() = 0;
+
+  State get_state() {
+    state_lock.take();
+    State current_state = state;
+    state_lock.give();
+    return current_state;
+  }
+
+  void set_state(State new_state) {
+    state_lock.take();
+    state = new_state;
+    state_lock.give();
+  }
 };
-};  // namespace lib
+
+}  // namespace lib
