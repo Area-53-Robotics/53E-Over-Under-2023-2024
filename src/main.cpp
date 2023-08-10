@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "lib/subsystems/catapult.hpp"
 #include "pros/colors.hpp"
 
 /**
@@ -11,6 +12,9 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+  lib::Catapult my_catapult;
+  my_catapult.start_loop();
+
   pros::screen::set_pen(pros::Color::black);
   pros::screen::fill_rect(0, 0, 400, 200);
   pros::screen::set_pen(pros::Color::red);
