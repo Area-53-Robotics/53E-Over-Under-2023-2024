@@ -15,3 +15,9 @@ Use of pragma once is permitted in the place of normal header guards. We only ev
 ### File names
 
 Use .cpp for C++ body files, and .hpp for C++ header files.
+
+## Thanks To
+
+Here are the people and codebases that helped me along the way:
+- [Lib7842](https://github.com/theol0403/lib7842)
+- [RaidZeroLib](https://github.com/Ryan4253/RaidZeroLib/tree/main/src)

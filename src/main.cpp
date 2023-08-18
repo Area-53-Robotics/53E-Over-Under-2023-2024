@@ -1,9 +1,21 @@
 #include "main.h"
 
+#include <cstdio>
 #include <vector>
 
 #include "lib/subsystems/catapult.hpp"
+#include "pros/apix.h"
 #include "pros/colors.hpp"
+#include "pros/misc.h"
+#include "pros/rtos.hpp"
+#include "rapidjson/document.h"
+#include "rapidjson/stringbuffer.h"
+#include "rapidjson/writer.h"
+
+pros::MotorGroup left_motors({-11, 12, -15});
+pros::MotorGroup right_motors({1, -2, 3});
+
+pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -12,8 +24,11 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  lib::Catapult my_catapult;
-  my_catapult.init();
+  // lib::Catapult my_catapult;
+  //   my_catapult.start_task();
+
+  pros::c::serctl(SERCTL_DISABLE_COBS, nullptr);
+  pros::c::serctl(SERCTL_DEACTIVATE, 0x0);
 
   pros::screen::set_pen(pros::Color::black);
   pros::screen::fill_rect(0, 0, 400, 200);
@@ -67,36 +82,29 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
+double calc_drive_curve(double joy_stick_position, float drive_curve_scale) {
+  if (drive_curve_scale != 0) {
+    return (powf(2.718, -(drive_curve_scale / 10)) +
+            powf(2.718, (fabs(joy_stick_position) - 127) / 10) *
+                (1 - powf(2.718, -(drive_curve_scale / 10)))) *
+           joy_stick_position;
+  }
+  return joy_stick_position;
+}
+
 void opcontrol() {
-  pros::MotorGroup left_motors({1, -2, 3});
-  pros::MotorGroup right_motors({-11, -12, 14});
-  pros::Controller controller(pros::E_CONTROLLER_MASTER);
-  int start_time = pros::millis();
-  int end_time = start_time + 1000 * 60;
+  while (true) {
+    int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) + 1;
+    int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) + 1;
 
-  while (pros::millis() < end_time) {
-    // Move the motors at maximum speed
-    if (!controller.get_digital(
-            pros::E_CONTROLLER_DIGITAL_A)) {  // Emergency stop
-      left_motors.move(127);
-      right_motors.move(127);
-    }
+     int left_power = calc_drive_curve(left, 3);
+     int right_power = calc_drive_curve(right, 3);
 
-    std::vector<std::int32_t> left_motor_draw =
-        left_motors.get_current_draw_all();
-    std::vector<std::int32_t> right_motor_draw =
-        right_motors.get_current_draw_all();
+     left_motors.move(left_power);
+     right_motors.move(right_power);
 
-    std::vector<double> left_motor_temps = left_motors.get_temperature_all();
-    std::vector<double> right_motor_temps = right_motors.get_temperature_all();
 
-    // Print data to stdout in csv format
-    printf("%i, %i, %i, %i, %i, %i, %f, %f, %f, %f, %f, %f, %i \n",
-           left_motor_draw[0], left_motor_draw[1], left_motor_draw[2],
-           right_motor_draw[0], right_motor_draw[1], right_motor_draw[2],
-           left_motor_temps[0], left_motor_temps[1], left_motor_temps[2],
-           right_motor_temps[0], right_motor_temps[1], right_motor_temps[2],
-           pros::millis());
-    pros::delay(50);  // The brain terminal cannot handle faster than this
+    pros::delay(20);
   }
 }

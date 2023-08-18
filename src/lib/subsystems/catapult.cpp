@@ -2,13 +2,18 @@
 
 #include <cstdio>
 
+#include "pros/rtos.hpp"
+
 namespace lib {
 
 Catapult::Catapult(){};
 Catapult::~Catapult(){};
 void Catapult::loop() {
-  if (get_state() == CatapultState::Idle) {
-    printf("just chillin\n");
+  while (true) {
+    if (get_state() == CatapultState::Idle) {
+      printf("just chillin\n");
+    }
+    pros::delay(20);
   }
 };
 }  // namespace lib
