@@ -15,5 +15,5 @@ temp.log
 temp.errors
 *.ini
 .d/
-.direnv
-*.csv
+
+.direnv/

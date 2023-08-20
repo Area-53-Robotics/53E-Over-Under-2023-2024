@@ -8,12 +8,9 @@
 #include "pros/colors.hpp"
 #include "pros/misc.h"
 #include "pros/rtos.hpp"
-#include "rapidjson/document.h"
-#include "rapidjson/stringbuffer.h"
-#include "rapidjson/writer.h"
 
-pros::MotorGroup left_motors({-11, 12, -15});
-pros::MotorGroup right_motors({1, -2, 3});
+pros::Motor_Group left_motors({-11, 12, -15});
+pros::Motor_Group right_motors({1, -2, 3});
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
@@ -30,12 +27,12 @@ void initialize() {
   pros::c::serctl(SERCTL_DISABLE_COBS, nullptr);
   pros::c::serctl(SERCTL_DEACTIVATE, 0x0);
 
-  pros::screen::set_pen(pros::Color::black);
-  pros::screen::fill_rect(0, 0, 400, 200);
-  pros::screen::set_pen(pros::Color::red);
-  pros::screen::print(TEXT_MEDIUM, 1, "MANKIND IS DEAD");
-  pros::screen::print(TEXT_MEDIUM, 2, "BLOOD IS FUEL");
-  pros::screen::print(TEXT_MEDIUM, 3, "HELL IS FULL");
+  // pros::screen::set_pen(pros::Color::black);
+  // pros::screen::fill_rect(0, 0, 400, 200);
+  // pros::screen::set_pen(pros::Color::red);
+  // pros::screen::print(TEXT_MEDIUM, 1, "MANKIND IS DEAD");
+  // pros::screen::print(TEXT_MEDIUM, 2, "BLOOD IS FUEL");
+  // pros::screen::print(TEXT_MEDIUM, 3, "HELL IS FULL");
 }
 
 /**
@@ -98,12 +95,11 @@ void opcontrol() {
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) + 1;
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) + 1;
 
-     int left_power = calc_drive_curve(left, 3);
-     int right_power = calc_drive_curve(right, 3);
+    int left_power = calc_drive_curve(left, 3);
+    int right_power = calc_drive_curve(right, 3);
 
-     left_motors.move(left_power);
-     right_motors.move(right_power);
-
+    left_motors.move(left_power);
+    right_motors.move(right_power);
 
     pros::delay(20);
   }
