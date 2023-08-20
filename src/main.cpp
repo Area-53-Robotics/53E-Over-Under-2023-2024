@@ -3,16 +3,12 @@
 #include <cstdio>
 #include <vector>
 
+#include "globals.hpp"
 #include "lib/subsystems/catapult.hpp"
 #include "pros/apix.h"
 #include "pros/colors.hpp"
 #include "pros/misc.h"
 #include "pros/rtos.hpp"
-
-pros::Motor_Group left_motors({-11, 12, -15});
-pros::Motor_Group right_motors({1, -2, 3});
-
-pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -24,6 +20,8 @@ void initialize() {
   // lib::Catapult my_catapult;
   //   my_catapult.start_task();
 
+  // WARNING: these lines break the pros terminal
+  // They are here for bluetooth code testing
   pros::c::serctl(SERCTL_DISABLE_COBS, nullptr);
   pros::c::serctl(SERCTL_DEACTIVATE, 0x0);
 
@@ -80,6 +78,8 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 
+// TODO: replace with LemLib once pr gets merged:
+// https://github.com/LemLib/LemLib/pull/50
 double calc_drive_curve(double joy_stick_position, float drive_curve_scale) {
   if (drive_curve_scale != 0) {
     return (powf(2.718, -(drive_curve_scale / 10)) +
