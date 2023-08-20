@@ -6,7 +6,7 @@
 
 namespace lib {
 
-Catapult::Catapult(){};
+Catapult::Catapult(std::shared_ptr<pros::Motor> i_motor) : motor(i_motor){};
 Catapult::~Catapult(){};
 void Catapult::loop() {
   while (true) {
