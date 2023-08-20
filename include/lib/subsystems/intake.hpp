@@ -1,24 +1,23 @@
 #pragma once
 
+#include <algorithm>
+
 #include "lib/utils/state_machine.hpp"
+#include "lib/utils/task_wrapper.hpp"
 #include "pros/motors.hpp"
 
 namespace lib {
 
-enum class State {
-  Idle,
-  Running,
-  Reversed,
-};
+enum class IntakeState { Idle, Running };
 
-class Intake : public StateMachine<State> {
+class Intake : public StateMachine<IntakeState>, public TaskWrapper {
  public:
-  Intake(int motor_port);
+  Intake(std::shared_ptr<pros::Motor> intake_motor);
   ~Intake();
 
-  void loop();
+  void loop() override;
 
  private:
-  pros::Motor motor;
+  std::shared_ptr<pros::Motor> motor;
 };
 }  // namespace lib
