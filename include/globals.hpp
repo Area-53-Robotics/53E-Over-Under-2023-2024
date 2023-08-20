@@ -1,12 +1,23 @@
 #pragma once
 
+#include <algorithm>
+#include <memory>
+
 #include "api.h"
 #include "lemlib/api.hpp"
+#include "lib/subsystems/catapult.hpp"
+#include "lib/subsystems/intake.hpp"
 
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
+
+inline auto catapult_motor = std::make_shared<pros::Motor>(22);
+inline lib::Catapult catapult(catapult_motor);
+
+inline auto intake_motor = std::make_shared<pros::Motor>(22);
+inline lib::Intake intake(intake_motor);
 
 inline pros::Motor_Group left_motors({-11, 12, -15});
 inline pros::Motor_Group right_motors({1, -2, 3});
@@ -19,8 +30,8 @@ inline lemlib::Drivetrain_t drivetrain{
     360             // wheel rpm
 };
 
-inline pros::ADIEncoder left_enc('A', 'B', true);
-inline pros::ADIEncoder back_enc('C', 'D', true);
+inline pros::ADIEncoder left_enc('X', 'X', true);
+inline pros::ADIEncoder back_enc('X', 'X', true);
 
 // left tracking wheel
 inline lemlib::TrackingWheel left_tracking_wheel(
