@@ -23,7 +23,7 @@ inline auto catapult_motor = std::make_shared<pros::Motor>(
 inline lib::Catapult catapult(catapult_motor);
 
 inline auto intake_motor = std::make_shared<pros::Motor>(
-    22);  // WARNING: this motor should be used nowhere else besides here
+    10);  // WARNING: this motor should be used nowhere else besides here
 
 inline lib::Intake intake(intake_motor);
 

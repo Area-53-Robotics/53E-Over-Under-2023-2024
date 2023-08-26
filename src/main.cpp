@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "globals.hpp"
+#include "lib/subsystems/intake.hpp"
 #include "pros/apix.h"
 #include "pros/colors.hpp"
 #include "pros/llemu.hpp"
@@ -101,6 +102,16 @@ void opcontrol() {
   grapher->addDataType("right", COLOR_AQUAMARINE);
 
   while (true) {
+    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+      intake.set_state(lib::IntakeState::Running);
+    }
+    else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+      intake.set_state(lib::IntakeState::Reversed);
+    }
+    else{
+      intake.set_state(lib::IntakeState::Idle);
+    }
+    
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) + 1;
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) + 1;
 
@@ -116,3 +127,5 @@ void opcontrol() {
     pros::delay(20);
   }
 }
+
+

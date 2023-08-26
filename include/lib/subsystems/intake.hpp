@@ -8,7 +8,7 @@
 
 namespace lib {
 
-enum class IntakeState { Idle, Running };
+enum class IntakeState { Idle, Running, Reversed };
 
 class Intake : public StateMachine<IntakeState>, public TaskWrapper {
  public:
