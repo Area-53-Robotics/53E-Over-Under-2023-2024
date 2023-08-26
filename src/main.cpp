@@ -4,9 +4,9 @@
 #include <vector>
 
 #include "globals.hpp"
-#include "lib/subsystems/catapult.hpp"
 #include "pros/apix.h"
 #include "pros/colors.hpp"
+#include "pros/llemu.hpp"
 #include "pros/misc.h"
 #include "pros/rtos.hpp"
 
@@ -16,14 +16,19 @@
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+
 void initialize() {
   // WARNING: these lines break the pros terminal
   // They are here for bluetooth code testing
-  pros::c::serctl(SERCTL_DISABLE_COBS, nullptr);
-  pros::c::serctl(SERCTL_DEACTIVATE, 0x0);
+  // pros::c::serctl(SERCTL_DISABLE_COBS, nullptr);
+  // pros::c::serctl(SERCTL_DEACTIVATE, 0x0);
+
+  chassis.calibrate();
 
   catapult.start_task();
   intake.start_task();
+
+  grapher->startTask();
 
   // pros::screen::set_pen(pros::Color::black);
   // pros::screen::fill_rect(0, 0, 400, 200);
@@ -62,7 +67,7 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() { chassis.moveTo(0, 10, 2000); }
 
 // TODO: replace with LemLib once pr gets merged:
 // https://github.com/LemLib/LemLib/pull/50
@@ -92,6 +97,9 @@ double calc_drive_curve(double joy_stick_position, float drive_curve_scale) {
  */
 
 void opcontrol() {
+  grapher->addDataType("left", COLOR_ORANGE);
+  grapher->addDataType("right", COLOR_AQUAMARINE);
+
   while (true) {
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) + 1;
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) + 1;
@@ -99,8 +107,11 @@ void opcontrol() {
     int left_power = calc_drive_curve(left, 3);
     int right_power = calc_drive_curve(right, 3);
 
-    left_motors.move(left_power);  // TODO: handle this with LemLib
-    right_motors.move(right_power);
+    grapher->update("left", left_power / 127.0);
+    grapher->update("right", right_power / 127.0);
+
+     left_motors.move(left_power);  // TODO: handle this with LemLib
+     right_motors.move(right_power);
 
     pros::delay(20);
   }

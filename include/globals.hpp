@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <memory>
 
+#include "Graphy/Grapher.hpp"
 #include "api.h"
 #include "lemlib/api.hpp"
 #include "lib/subsystems/catapult.hpp"
@@ -10,6 +11,10 @@
 
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
+
+inline std::shared_ptr<graphy::AsyncGrapher> grapher(
+    new graphy::AsyncGrapher("Joystick Output"));
+
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
