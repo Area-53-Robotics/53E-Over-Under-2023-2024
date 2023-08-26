@@ -73,11 +73,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1691200903,
-        "narHash": "sha256-mf4zN5x2Cc3FhbPI6BTYviEg5sf/LfdZKsSRaY6ZJo0=",
+        "lastModified": 1691848327,
+        "narHash": "sha256-bGijqyZb+orLxmY541hUdVJKa44VB6iV2Aviwn5Ji5k=",
         "owner": "BattleCh1cken",
         "repo": "pros-cli-nix",
-        "rev": "cf34ed1f3301bcfda10aa313e0d3795dd446a6a9",
+        "rev": "4c00d8e3c6caa377e67ce0cf84923feba5533f23",
         "type": "github"
       },
       "original": {
