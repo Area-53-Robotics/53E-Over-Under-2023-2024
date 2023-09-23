@@ -8,6 +8,7 @@
 #include "lemlib/api.hpp"
 #include "lib/subsystems/catapult.hpp"
 #include "lib/subsystems/intake.hpp"
+#include "lib/subsystems/flaps.hpp"
 
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
@@ -21,6 +22,10 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 inline auto catapult_motor = std::make_shared<pros::Motor>(
     22);  // WARNING: this motor should be used nowhere else besides here
 inline lib::Catapult catapult(catapult_motor);
+
+inline auto piston = std::make_shared<pros::ADIAnalogOut>(-1);
+inline lib::Flaps flaps(piston);
+
 
 inline auto intake_motor = std::make_shared<pros::Motor>(
     10);  // WARNING: this motor should be used nowhere else besides here

@@ -24,12 +24,12 @@ void initialize() {
   // pros::c::serctl(SERCTL_DISABLE_COBS, nullptr);
   // pros::c::serctl(SERCTL_DEACTIVATE, 0x0);
 
-  chassis.calibrate();
+  //chassis.calibrate();
 
-  catapult.start_task();
-  intake.start_task();
+ // catapult.start_task();
+  //intake.start_task();
 
-  grapher->startTask();
+  //grapher->startTask();
 
   // pros::screen::set_pen(pros::Color::black);
   // pros::screen::fill_rect(0, 0, 400, 200);
@@ -97,11 +97,15 @@ double calc_drive_curve(double joy_stick_position, float drive_curve_scale) {
  * task, not resume it from where it left off.
  */
 
+
+
 void opcontrol() {
   grapher->addDataType("left", COLOR_ORANGE);
   grapher->addDataType("right", COLOR_AQUAMARINE);
 
   while (true) {
+    printf("asdfghj\n");
+    
     if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
       intake.set_state(lib::IntakeState::Running);
     }
@@ -111,6 +115,22 @@ void opcontrol() {
     else{
       intake.set_state(lib::IntakeState::Idle);
     }
+
+    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+      flaps.set_state(lib::FlapState::Expanded);
+       
+
+    }
+    else{
+      flaps.set_state(lib::FlapState::Idle);
+    }
+
+    //if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)){
+      //printf("pressed\n");
+    //}
+    //else{
+      //catapult_motor.move(0);
+    //}
     
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) + 1;
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) + 1;
@@ -123,9 +143,9 @@ void opcontrol() {
 
      left_motors.move(left_power);  // TODO: handle this with LemLib
      right_motors.move(right_power);
+     
 
-    pros::delay(20);
+    printf("test\n");
+    pros::delay(50);
   }
 }
-
-

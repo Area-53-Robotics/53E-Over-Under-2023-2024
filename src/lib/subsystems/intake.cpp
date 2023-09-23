@@ -10,8 +10,6 @@ namespace lib {
 
 Intake::Intake(std::shared_ptr<pros::Motor> i_motor) : motor(i_motor){};
 
-Intake::~Intake(){};
-
 void Intake::loop() {
   while (true) {
     if (get_state() == IntakeState::Idle) {
