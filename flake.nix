@@ -29,6 +29,7 @@
           python310Packages.matplotlib
           python310Packages.numpy
           python310Packages.pandas
+          python310Packages.bleak
           python310Packages.paho-mqtt
           python310
         ];

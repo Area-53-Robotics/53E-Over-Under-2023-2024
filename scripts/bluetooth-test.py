@@ -6,7 +6,6 @@ import argparse
 import asyncio
 
 from bleak import BleakScanner, BleakClient
-import paho.mqtt.client as mqtt
 
 SERVICE_UUID = "08590f7e-db05-467e-8757-72f6faeb13d5"
 
