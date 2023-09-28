@@ -7,6 +7,7 @@ void TaskWrapper::start_task() {
     task = new pros::Task([this] {
       while (true) {
         this->loop();
+        pros::delay(20);
       }
     });
   }
