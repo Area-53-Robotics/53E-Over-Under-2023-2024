@@ -1,8 +1,7 @@
 # 53E Over Under
 
 [![Build Project](https://github.com/Area-53-Robotics/53E/actions/workflows/pros-build.yml/badge.svg)](https://github.com/Area-53-Robotics/53E/actions/workflows/pros-build.yml)
-
-[![test-clang-format](https://github.com/Area-53-Robotics/53E/actions/workflows/test-clang-format.yml/badge.svg)](https://github.com/Area-53-Robotics/53E/actions/workflows/test-clang-format.yml)
+[![Clang Format](https://github.com/Area-53-Robotics/53E/actions/workflows/test-clang-format.yml/badge.svg)](https://github.com/Area-53-Robotics/53E/actions/workflows/test-clang-format.yml)
 
 This is 53E's codebase for the 2023, 2024 Over Under Season.
 
