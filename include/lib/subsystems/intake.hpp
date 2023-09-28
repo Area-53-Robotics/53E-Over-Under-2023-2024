@@ -12,10 +12,8 @@ class Intake : public StateMachine<IntakeState>, public TaskWrapper {
  public:
   Intake(std::shared_ptr<pros::Motor> intake_motor);
 
-
  private:
   std::shared_ptr<pros::Motor> motor;
   void loop() override;
-
 };
 }  // namespace lib
