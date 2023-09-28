@@ -21,6 +21,7 @@ Use .cpp for C++ body files, and .hpp for C++ header files.
 
 ## Thanks To
 
-Here are the people and codebases that helped me along the way:
+Here are the people and codebases that helped us along the way:
 - [Lib7842](https://github.com/theol0403/lib7842)
 - [RaidZeroLib](https://github.com/Ryan4253/RaidZeroLib/tree/main/src)
+- [LemLib](https://github.com/LemLib/LemLib)
