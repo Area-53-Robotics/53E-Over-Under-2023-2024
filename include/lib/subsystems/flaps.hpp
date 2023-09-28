@@ -1,21 +1,19 @@
 #pragma once
 
-#include "lib/utils/state_machine.hpp"
-#include "lib/utils/task-wrapper.hpp" 
 #include "api.h"
+#include "lib/utils/state_machine.hpp"
+#include "lib/utils/task-wrapper.hpp"
 
 namespace lib {
 
-enum class FlapState {Expanded, Idle};
+enum class FlapState { Expanded, Idle };
 
 class Flaps : public StateMachine<FlapState>, public TaskWrapper {
-    public:
-     Flaps(std::shared_ptr<pros::ADIAnalogOut> piston);
-     
-    private:
+ public:
+  Flaps(std::shared_ptr<pros::ADIDigitalOut> piston);
 
-     std::shared_ptr<pros::ADIAnalogOut> piston;
-     void loop() override;
-
+ private:
+  std::shared_ptr<pros::ADIDigitalOut> piston;
+  void loop() override;
 };
-}
+}  // namespace lib
