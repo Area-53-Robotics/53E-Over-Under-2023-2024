@@ -3,35 +3,32 @@
 #include <algorithm>
 #include <memory>
 
-#include "Graphy/Grapher.hpp"
 #include "api.h"
 #include "lemlib/api.hpp"
 #include "lib/subsystems/catapult.hpp"
-#include "lib/subsystems/intake.hpp"
 #include "lib/subsystems/flaps.hpp"
+#include "lib/subsystems/intake.hpp"
+#include "pros/adi.hpp"
 
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
 
-inline std::shared_ptr<graphy::AsyncGrapher> grapher(
-    new graphy::AsyncGrapher("Joystick Output"));
-
-
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-inline auto catapult_motor = std::make_shared<pros::Motor>(
-    22);  // WARNING: this motor should be used nowhere else besides here
-inline lib::Catapult catapult(catapult_motor);
+// Catapult
+inline auto catapult_motor = std::make_shared<pros::Motor>(10);
+inline auto catapult_limit_switch = std::make_shared<pros::ADIDigitalIn>('C');
+inline lib::Catapult catapult(catapult_motor, catapult_limit_switch);
 
-inline auto piston = std::make_shared<pros::ADIAnalogOut>(-1);
+// Flaps
+inline auto piston = std::make_shared<pros::ADIDigitalOut>('D');
 inline lib::Flaps flaps(piston);
 
-
-inline auto intake_motor = std::make_shared<pros::Motor>(
-    10);  // WARNING: this motor should be used nowhere else besides here
-
+// Intake
+inline auto intake_motor = std::make_shared<pros::Motor>(22);
 inline lib::Intake intake(intake_motor);
 
+// Drivetrain
 inline pros::Motor_Group left_motors({-11, 12, -15});
 inline pros::Motor_Group right_motors({1, -2, 3});
 
