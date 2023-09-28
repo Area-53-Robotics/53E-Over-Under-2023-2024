@@ -1,4 +1,3 @@
-
 #include "lib/subsystems/intake.hpp"
 
 #include <cstdio>
