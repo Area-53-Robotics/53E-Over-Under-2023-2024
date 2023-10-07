@@ -16,7 +16,7 @@
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // Catapult
-inline auto catapult_motor = std::make_shared<pros::Motor>(10);
+inline auto catapult_motor = std::make_shared<pros::Motor>(20);
 inline auto catapult_limit_switch = std::make_shared<pros::ADIDigitalIn>('C');
 inline lib::Catapult catapult(catapult_motor, catapult_limit_switch);
 
@@ -25,7 +25,7 @@ inline auto piston = std::make_shared<pros::ADIDigitalOut>('D');
 inline lib::Flaps flaps(piston);
 
 // Intake
-inline auto intake_motor = std::make_shared<pros::Motor>(22);
+inline auto intake_motor = std::make_shared<pros::Motor>(8);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain
