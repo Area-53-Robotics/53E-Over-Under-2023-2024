@@ -10,9 +10,7 @@ namespace lib {
 Catapult::Catapult(std::shared_ptr<pros::Motor> i_motor,
                    std::shared_ptr<pros::ADIDigitalIn> i_limit_switch)
     : motor(i_motor), limit_switch(i_limit_switch) {
-  printf("setting initial mode to loading");
   motor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
   set_state(CatapultState::Loading);
 };
 
@@ -34,7 +32,6 @@ void Catapult::toggle_repeating() {
 void Catapult::loop() {
   switch (get_state()) {
     case CatapultState::Idle: {
-      printf("idle\n");
       // This mode is meant to to completely disable the catapult
       motor->move(0);
       break;
@@ -50,7 +47,6 @@ void Catapult::loop() {
     }
 
     case CatapultState::Ready: {
-      printf("ready\n");
       if (!limit_switch->get_value()) {
         set_state(CatapultState::Loading);
       }
