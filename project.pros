@@ -22,7 +22,7 @@
                 "version": "1.2.0"
             },
             "LemLib": {
-                "location": "/home/battlechicken/.config/pros/templates/LemLib@0.4.7",
+                "location": "/home/battlechicken/.config/pros/templates/LemLib@0.4.8",
                 "metadata": {
                     "origin": "local"
                 },
@@ -30,19 +30,25 @@
                 "py/object": "pros.conductor.templates.local_template.LocalTemplate",
                 "supported_kernels": "^3.8.0",
                 "system_files": [
-                    "firmware\\LemLib.a",
-                    "include\\lemlib\\chassis\\odom.hpp",
-                    "include\\lemlib\\pose.hpp",
-                    "include\\lemlib\\util.hpp",
-                    "include\\lemlib\\chassis\\trackingWheel.hpp",
-                    "include\\lemlib\\pid.hpp",
-                    "include\\lemlib\\api.hpp",
-                    "include\\lemlib\\logger.hpp",
-                    "include\\lemlib\\chassis\\chassis.hpp"
+                    "include/lemlib/chassis/odom.hpp",
+                    "include/lemlib/chassis/chassis.hpp",
+                    "include/lemlib/pose.hpp",
+                    "include/lemlib/api.hpp",
+                    "include/fmt/format-inl.h",
+                    "include/fmt/args.h",
+                    "include/fmt/core.h",
+                    "firmware/LemLib.a",
+                    "include/lemlib/chassis/trackingWheel.hpp",
+                    "include/lemlib/pid.hpp",
+                    "include/lemlib/timer.hpp",
+                    "include/lemlib/util.hpp",
+                    "include/lemlib/asset.hpp",
+                    "firmware/asset.mk",
+                    "include/fmt/format.h"
                 ],
                 "target": "v5",
                 "user_files": [],
-                "version": "0.4.7"
+                "version": "0.4.8"
             },
             "kernel": {
                 "location": "/home/battlechicken/.config/pros/templates/kernel@3.8.0",

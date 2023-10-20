@@ -42,7 +42,7 @@ void Catapult::loop() {
         set_state(CatapultState::Ready);
       }
 
-      motor->move(100);
+      motor->move(127);
       break;
     }
 

@@ -106,7 +106,7 @@ async def main(args: argparse.Namespace):
         await client.start_notify(CHAR2_UUID, char2_callback)
 
         while True:
-            await asyncio.sleep(1.0)
+            await asyncio.sleep(10 / 1000)
 
 
 if __name__ == "__main__":
