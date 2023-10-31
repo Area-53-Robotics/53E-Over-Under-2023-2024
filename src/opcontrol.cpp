@@ -17,6 +17,7 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+  catapult.set_state(lib::CatapultState::Loading);
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -42,11 +43,20 @@ void opcontrol() {
       catapult.fire();
     }
 
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+      controller.rumble(".");
+      catapult.toggle_repeating();
+    }
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+      controller.rumble(".");
+      catapult.toggle_disabled();
+    }
+
     // Drivetrain control
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    chassis.tank(left, right, 3);
+    chassis.tank(left, right, 5);
 
     pros::delay(20);
   }

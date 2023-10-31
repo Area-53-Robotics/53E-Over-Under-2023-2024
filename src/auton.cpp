@@ -1,6 +1,9 @@
 #include "globals.hpp"
+#include "lib/subsystems/flaps.hpp"
+#include "lib/subsystems/intake.hpp"
 #include "lib/utils/auton_selector.hpp"
 #include "main.h"
+#include "pros/rtos.hpp"
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -11,22 +14,41 @@
  *
  * If the robot is disabled or communications is lost, the autonomous task
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
- * from where it left off.
+ * from where it left off
  */
+
+// ASSET(to_bar_txt)
+
 void autonomous() {
   switch (lib::selector::auton) {
-    case 1:  // Left simple
-      chassis.moveTo(0, 10, 0, 4000);
+    case 1:  // Defensive simple
+      chassis.moveTo(6, 9, 50, 4000, false, true, 8, 0.4);
+      pros::delay(1000);
+      flaps.set_state(lib::FlapState::Expanded);
+      pros::delay(1000);
+      chassis.turnTo(12, 9, 2000);
+      pros::delay(1000);
+      flaps.set_state(lib::FlapState::Idle);
+      chassis.moveTo(17, 19, 90, 4000, false, true, 8, 0.4);
+      intake.set_state(lib::IntakeState::Reversed);
       pros::delay(2000);
-      chassis.moveTo(0, 0, 0, 4000, false, false);
-      /*
-      chassis.moveTo(24, 12, 3000);
-      intake.set_state(lib::IntakeState::Running);
-      chassis.turnTo(72, 12, 2000);
       intake.set_state(lib::IntakeState::Idle);
-      chassis.moveTo(68, 12, 3000);
-      */
-      // touch the bar with the wiggly antenna.
+      pros::delay(500);
+      // chassis.moveTo(50, 19, 90, 4000, false, true, 8, 0.4);
+      // chassis.moveTo(17, 19, 90, 4000, false, false, 8, 0.4);
+      chassis.moveTo(-7, -35, 0, 5000, false, false);
+
+      //  chassis.waitUntilDist(4);
+      //  chassis.waitUntilDist(9);
+      //    flaps.set_state(lib::FlapState::Idle);
+      //      move to bar
+      //      chassis.moveTo(-24, 0, 0, 4000);
+
+      // chassis.moveTo(24, 12, 3000);
+      // chassis.turnTo(72, 12, 2000);
+      // intake.set_state(lib::IntakeState::Idle);
+      // chassis.moveTo(68, 12, 3000);
+      //  touch the bar with the wiggly antenna.
       break;
     case 2:  // Left with goal
       /*

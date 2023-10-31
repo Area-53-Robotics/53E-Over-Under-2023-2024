@@ -17,6 +17,7 @@ class Catapult : public lib::StateMachine<CatapultState>, public TaskWrapper {
 
   void fire();
   void toggle_repeating();
+  void toggle_disabled();
 
  private:
   std::shared_ptr<pros::Motor> motor;

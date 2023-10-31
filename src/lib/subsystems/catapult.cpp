@@ -29,6 +29,14 @@ void Catapult::toggle_repeating() {
   }
 }
 
+void Catapult::toggle_disabled() {
+  if (!(get_state() == CatapultState::Idle)) {
+    set_state(CatapultState::Idle);
+  } else {
+    set_state(CatapultState::Loading);
+  }
+}
+
 void Catapult::loop() {
   switch (get_state()) {
     case CatapultState::Idle: {
@@ -65,7 +73,7 @@ void Catapult::loop() {
     }
 
     case CatapultState::Repeating: {
-      // motor->move(127);
+      motor->move(127);
       break;
     }
   }

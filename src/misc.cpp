@@ -5,6 +5,8 @@
 #include "lib/subsystems/intake.hpp"
 #include "lib/utils/auton_selector.hpp"
 #include "main.h"
+#include "pros/llemu.hpp"
+#include "sylib/system.hpp"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -16,11 +18,14 @@
 void initialize() {
   // pros::lcd::initialize();
   lib::selector::init();
+  sylib::initialize();
   chassis.calibrate();
 
   catapult.start_task();
   intake.start_task();
   flaps.start_task();
+
+  led.gradient(0x00FF00, 0x0000FF);
 
   // pros::screen::set_pen(pros::Color::black);
   // pros::screen::fill_rect(0, 0, 400, 200);
@@ -28,6 +33,19 @@ void initialize() {
   // pros::screen::print(TEXT_MEDIUM, 1, "MANKIND IS DEAD");
   // pros::screen::print(TEXT_MEDIUM, 2, "BLOOD IS FUEL");
   // pros::screen::print(TEXT_MEDIUM, 3, "HELL IS FULL");
+
+  ///*
+  pros::Task screenTask([=]() {
+    while (true) {
+      pros::lcd::print(0, "X: %f", chassis.getPose().x);
+      pros::lcd::print(1, "Y: %f", chassis.getPose().y);
+      pros::lcd::print(2, "Theta: %f", chassis.getPose().theta);
+      pros::delay(50);
+    }
+  });
+  //*/
+
+  // pros::lcd::initialize();
 }
 
 /**

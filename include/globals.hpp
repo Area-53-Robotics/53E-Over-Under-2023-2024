@@ -9,11 +9,15 @@
 #include "lib/subsystems/flaps.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "pros/adi.hpp"
+#include "sylib/sylib.hpp"
 
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
+
+// inline pros::ADILed led('E', 20);
+inline sylib::Addrled led(22, 5, 20);
 
 // Catapult
 inline auto catapult_motor = std::make_shared<pros::Motor>(20);
@@ -37,7 +41,8 @@ inline lemlib::Drivetrain_t drivetrain{
     &right_motors,  // right drivetrain motors
     10,             // track width // TODO:  measure this value correctly
     4,              // wheel diameter
-    342.85          // wheel rpm
+    342.85,         // wheel rpm
+    8               // chase power
 };
 
 inline pros::ADIEncoder left_enc('A', 'B', false);
@@ -51,16 +56,17 @@ inline pros::Imu inertial_sensor(17);
 
 inline lemlib::OdomSensors_t sensors{
     &left_tracking_wheel,  // vertical tracking wheel 1
-    nullptr,               // vertical tracking wheel 2
+    nullptr,
+    // nullptr,  // vertical tracking wheel 2
     &back_tracking_wheel,  // horizontal tracking wheel 1
-    nullptr,               // horizontal tracking wheel 2
-    &inertial_sensor       // inertial sensor
+    // nullptr,
+    nullptr,          // horizontal tracking wheel 2
+    &inertial_sensor  // inertial sensor
 };
 
 // forward/backward PID
 inline lemlib::ChassisController_t lateralController{
-    8,    // kP
-    30,   // kD
+    10,   // kP
     1,    // smallErrorRange
     100,  // smallErrorTimeout
     3,    // largeErrorRange
