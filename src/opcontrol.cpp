@@ -17,14 +17,11 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  catapult.set_state(lib::CatapultState::Loading);
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      controller.rumble(".");
       intake.set_state(lib::IntakeState::Running);
     } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      controller.rumble(".");
       intake.set_state(lib::IntakeState::Reversed);
     } else {
       intake.set_state(lib::IntakeState::Idle);

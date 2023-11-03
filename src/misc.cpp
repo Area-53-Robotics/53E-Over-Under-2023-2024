@@ -27,14 +27,7 @@ void initialize() {
 
   led.gradient(0x00FF00, 0x0000FF);
 
-  // pros::screen::set_pen(pros::Color::black);
-  // pros::screen::fill_rect(0, 0, 400, 200);
-  // pros::screen::set_pen(pros::Color::red);
-  // pros::screen::print(TEXT_MEDIUM, 1, "MANKIND IS DEAD");
-  // pros::screen::print(TEXT_MEDIUM, 2, "BLOOD IS FUEL");
-  // pros::screen::print(TEXT_MEDIUM, 3, "HELL IS FULL");
-
-  ///*
+  /*
   pros::Task screenTask([=]() {
     while (true) {
       pros::lcd::print(0, "X: %f", chassis.getPose().x);

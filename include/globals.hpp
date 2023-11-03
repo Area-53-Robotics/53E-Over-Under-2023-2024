@@ -16,24 +16,23 @@
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-// inline pros::ADILed led('E', 20);
 inline sylib::Addrled led(22, 5, 20);
 
 // Catapult
 inline auto catapult_motor = std::make_shared<pros::Motor>(20);
-inline auto catapult_limit_switch = std::make_shared<pros::ADIDigitalIn>('C');
-inline lib::Catapult catapult(catapult_motor, catapult_limit_switch);
+inline auto catapult_rotation_sensor = std::make_shared<pros::Rotation>(8);
+inline lib::Catapult catapult(catapult_motor, catapult_rotation_sensor);
 
 // Flaps
 inline auto piston = std::make_shared<pros::ADIDigitalOut>('D');
 inline lib::Flaps flaps(piston);
 
 // Intake
-inline auto intake_motor = std::make_shared<pros::Motor>(8);
+inline auto intake_motor = std::make_shared<pros::Motor>(9);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain
-inline pros::Motor_Group left_motors({-11, 12, -15});
+inline pros::Motor_Group left_motors({-11, 17, -15});
 inline pros::Motor_Group right_motors({1, -2, 3});
 
 inline lemlib::Drivetrain_t drivetrain{

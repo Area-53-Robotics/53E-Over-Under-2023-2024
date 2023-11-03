@@ -7,12 +7,25 @@
 
 namespace lib {
 
+// We define a range of angles that the catapult is considered loaded for
+// The rotation sensor outputs in centidegrees
+const float MIN_LOADED_ANGLE = 32000;
+const float MAX_LOADED_ANGLE = 30000;
+
 Catapult::Catapult(std::shared_ptr<pros::Motor> i_motor,
-                   std::shared_ptr<pros::ADIDigitalIn> i_limit_switch)
-    : motor(i_motor), limit_switch(i_limit_switch) {
+                   std::shared_ptr<pros::Rotation> i_rotation_sensor)
+    : motor(i_motor), rotation_sensor(i_rotation_sensor) {
   motor->set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   set_state(CatapultState::Loading);
 };
+
+bool is_cata_ready(float cataPosition) {
+  if (cataPosition > MIN_LOADED_ANGLE or cataPosition < MAX_LOADED_ANGLE) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 void Catapult::fire() {
   if (get_state() == CatapultState::Ready) {
@@ -40,13 +53,15 @@ void Catapult::toggle_disabled() {
 void Catapult::loop() {
   switch (get_state()) {
     case CatapultState::Idle: {
-      // This mode is meant to to completely disable the catapult
+      // This mode is meant to to completely disable the catapult, the state
+      // machine cannot automatically escape from this mode.
       motor->move(0);
       break;
     }
 
     case CatapultState::Loading: {
-      if (limit_switch->get_value()) {
+      printf("loading\n");
+      if (is_cata_ready(rotation_sensor->get_angle())) {
         set_state(CatapultState::Ready);
       }
 
@@ -55,17 +70,18 @@ void Catapult::loop() {
     }
 
     case CatapultState::Ready: {
-      if (!limit_switch->get_value()) {
+      printf("ready\n");
+      if (!is_cata_ready(rotation_sensor->get_angle())) {
         set_state(CatapultState::Loading);
       }
 
-      motor->move(0);
+      motor->brake();
       break;
     }
 
     case CatapultState::Firing: {
       printf("Firing\n");
-      while (limit_switch->get_value()) {
+      while (rotation_sensor->get_angle() < MAX_LOADED_ANGLE) {
         motor->move(127);
       }
       set_state(CatapultState::Loading);
