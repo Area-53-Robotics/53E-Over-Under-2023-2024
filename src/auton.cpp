@@ -34,21 +34,9 @@ void autonomous() {
       pros::delay(2000);
       intake.set_state(lib::IntakeState::Idle);
       pros::delay(500);
-      // chassis.moveTo(50, 19, 90, 4000, false, true, 8, 0.4);
-      // chassis.moveTo(17, 19, 90, 4000, false, false, 8, 0.4);
+      // move to touch the bar
       chassis.moveTo(-7, -35, 0, 5000, false, false);
 
-      //  chassis.waitUntilDist(4);
-      //  chassis.waitUntilDist(9);
-      //    flaps.set_state(lib::FlapState::Idle);
-      //      move to bar
-      //      chassis.moveTo(-24, 0, 0, 4000);
-
-      // chassis.moveTo(24, 12, 3000);
-      // chassis.turnTo(72, 12, 2000);
-      // intake.set_state(lib::IntakeState::Idle);
-      // chassis.moveTo(68, 12, 3000);
-      //  touch the bar with the wiggly antenna.
       break;
     case 2:  // Left with goal
       /*
