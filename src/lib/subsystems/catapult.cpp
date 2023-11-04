@@ -55,6 +55,7 @@ void Catapult::loop() {
     case CatapultState::Idle: {
       // This mode is meant to to completely disable the catapult, the state
       // machine cannot automatically escape from this mode.
+      motor->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       motor->move(0);
       break;
     }
@@ -70,6 +71,7 @@ void Catapult::loop() {
     }
 
     case CatapultState::Ready: {
+      motor->set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
       printf("ready\n");
       if (!is_cata_ready(rotation_sensor->get_angle())) {
         set_state(CatapultState::Loading);
