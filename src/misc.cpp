@@ -6,6 +6,7 @@
 #include "lib/utils/auton_selector.hpp"
 #include "main.h"
 #include "pros/llemu.hpp"
+#include "pros/rtos.hpp"
 #include "sylib/system.hpp"
 
 /**
@@ -25,7 +26,10 @@ void initialize() {
   intake.start_task();
   flaps.start_task();
 
-  led.gradient(0x00FF00, 0x0000FF);
+  // led.gradient(#D099FF, #A8E640);
+
+  led.gradient(0x8B3AFD, 0x7DFF29, 0, 0, false, true);
+  led.cycle(*led, 1);
 
   /*
   pros::Task screenTask([=]() {
