@@ -17,6 +17,8 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+  catapult.set_state(lib::CatapultState::Idle);
+  autonomous();
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {

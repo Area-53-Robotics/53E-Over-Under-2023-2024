@@ -17,21 +17,20 @@
  */
 
 void initialize() {
-  // pros::lcd::initialize();
-  lib::selector::init();
+  pros::lcd::initialize();
+  // lib::selector::init();
   sylib::initialize();
+
   chassis.calibrate();
 
   catapult.start_task();
   intake.start_task();
   flaps.start_task();
 
-  // led.gradient(#D099FF, #A8E640);
-
   led.gradient(0x8B3AFD, 0x7DFF29, 0, 0, false, true);
   led.cycle(*led, 1);
 
-  /*
+  ///*
   pros::Task screenTask([=]() {
     while (true) {
       pros::lcd::print(0, "X: %f", chassis.getPose().x);
@@ -41,8 +40,6 @@ void initialize() {
     }
   });
   //*/
-
-  // pros::lcd::initialize();
 }
 
 /**

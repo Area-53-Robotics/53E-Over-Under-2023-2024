@@ -32,7 +32,7 @@ inline auto intake_motor = std::make_shared<pros::Motor>(9);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain
-inline pros::Motor_Group left_motors({-11, 17, -15});
+inline pros::Motor_Group left_motors({-11, -17, 16});
 inline pros::Motor_Group right_motors({1, -2, 3});
 
 inline lemlib::Drivetrain_t drivetrain{
@@ -63,25 +63,24 @@ inline lemlib::OdomSensors_t sensors{
     &inertial_sensor  // inertial sensor
 };
 
-// forward/backward PID
+// lateral motion controller
 inline lemlib::ChassisController_t lateralController{
-    10,   // kP
-    1,    // smallErrorRange
-    100,  // smallErrorTimeout
-    3,    // largeErrorRange
-    500,  // largeErrorTimeout
-    5     // slew rate
+    20,    // kP
+    40,    // kD
+    1,     // small exit range
+    1000,  // small exit timeout
+    3,     // large error range
+    5000,  // large error timeout
 };
 
-// turning PID
+// angular motion controller
 inline lemlib::ChassisController_t angularController{
-    4,    // kP
-    40,   // kD
-    1,    // smallErrorRange
-    100,  // smallErrorTimeout
-    3,    // largeErrorRange
-    500,  // largeErrorTimeout
-    0     // slew rate
+    5,     // kP
+    10,    // kD
+    1,     // small exit range
+    1000,  // small exit timeout
+    3,     // large exit range
+    5000,  // large exit timeout
 };
 
 // create the chassis

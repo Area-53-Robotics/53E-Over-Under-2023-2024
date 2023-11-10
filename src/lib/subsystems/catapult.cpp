@@ -61,7 +61,6 @@ void Catapult::loop() {
     }
 
     case CatapultState::Loading: {
-      printf("loading\n");
       if (is_cata_ready(rotation_sensor->get_angle())) {
         set_state(CatapultState::Ready);
       }
