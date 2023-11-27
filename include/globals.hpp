@@ -16,26 +16,26 @@
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-inline sylib::Addrled led(22, 5, 20);
+inline sylib::Addrled led(22, 4, 20);
 
 // Catapult
-inline auto catapult_motor = std::make_shared<pros::Motor>(20);
-inline auto catapult_rotation_sensor = std::make_shared<pros::Rotation>(8);
+inline auto catapult_motor = std::make_shared<pros::Motor>(22);
+inline auto catapult_rotation_sensor = std::make_shared<pros::Rotation>(22);
 inline lib::Catapult catapult(catapult_motor, catapult_rotation_sensor);
 
 // Flaps
-inline auto piston = std::make_shared<pros::ADIDigitalOut>('D');
+inline auto piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(piston);
 
 // Intake
-inline auto intake_motor = std::make_shared<pros::Motor>(9);
+inline auto intake_motor = std::make_shared<pros::Motor>(2);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain
-inline pros::Motor_Group left_motors({-11, -17, 16});
-inline pros::Motor_Group right_motors({1, -2, 3});
+inline pros::Motor_Group left_motors({-11, -19, 20});
+inline pros::Motor_Group right_motors({1, 8, -9});
 
-inline lemlib::Drivetrain_t drivetrain{
+inline lemlib::Drivetrain drivetrain{
     &left_motors,   // left drivetrain motors
     &right_motors,  // right drivetrain motors
     10,             // track width // TODO:  measure this value correctly
@@ -44,43 +44,43 @@ inline lemlib::Drivetrain_t drivetrain{
     8               // chase power
 };
 
-inline pros::ADIEncoder left_enc('A', 'B', false);
-inline pros::ADIEncoder back_enc('G', 'H', false);
+inline pros::ADIEncoder left_enc('A', 'B', true);
+inline pros::ADIEncoder back_enc('G', 'H', true);
 
 // left tracking wheel
 inline lemlib::TrackingWheel left_tracking_wheel(&left_enc, 2.75, 3);
 inline lemlib::TrackingWheel back_tracking_wheel(&back_enc, 2.75, -4);
 
-inline pros::Imu inertial_sensor(17);
+inline pros::Imu inertial_sensor(16);
 
-inline lemlib::OdomSensors_t sensors{
+inline lemlib::OdomSensors sensors{
     &left_tracking_wheel,  // vertical tracking wheel 1
-    nullptr,
-    // nullptr,  // vertical tracking wheel 2
+    nullptr,               // vertical tracking wheel 2
     &back_tracking_wheel,  // horizontal tracking wheel 1
-    // nullptr,
-    nullptr,          // horizontal tracking wheel 2
-    &inertial_sensor  // inertial sensor
+    nullptr,               // horizontal tracking wheel 2
+    &inertial_sensor       // inertial sensor
 };
 
 // lateral motion controller
-inline lemlib::ChassisController_t lateralController{
+inline lemlib::ControllerSettings lateralController{
     20,    // kP
     40,    // kD
     1,     // small exit range
     1000,  // small exit timeout
     3,     // large error range
     5000,  // large error timeout
+    0,     // slew
 };
 
 // angular motion controller
-inline lemlib::ChassisController_t angularController{
+inline lemlib::ControllerSettings angularController{
     5,     // kP
     10,    // kD
     1,     // small exit range
     1000,  // small exit timeout
     3,     // large exit range
     5000,  // large exit timeout
+    0,     // slew
 };
 
 // create the chassis
