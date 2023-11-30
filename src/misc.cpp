@@ -2,6 +2,8 @@
 #include <vector>
 
 #include "globals.hpp"
+#include "lemlib/logger/infoSink.hpp"
+#include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "lib/utils/auton_selector.hpp"
 #include "main.h"
@@ -19,11 +21,12 @@
 void initialize() {
   pros::lcd::initialize();
   // lib::selector::init();
-  sylib::initialize();
 
+  flywheel.set_state(lib::FlywheelState::Idle);
+  sylib::initialize();
   chassis.calibrate();
 
-  catapult.start_task();
+  flywheel.start_task();
   intake.start_task();
   flaps.start_task();
 

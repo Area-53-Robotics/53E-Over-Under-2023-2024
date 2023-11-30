@@ -7,6 +7,7 @@
 #include "lemlib/api.hpp"
 #include "lib/subsystems/catapult.hpp"
 #include "lib/subsystems/flaps.hpp"
+#include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "pros/adi.hpp"
 #include "sylib/sylib.hpp"
@@ -17,6 +18,25 @@
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 inline sylib::Addrled led(22, 4, 20);
+
+// Flywheel
+inline sylib::SpeedControllerInfo flywheel_speed_controller(
+    [](double rpm) { return 5; },  // kV function
+    1,                             // kP
+    1,                             // kI
+    1,                             // kD
+    1,                             // kH
+    false,                         // anti-windup enabled
+    0,                             // anti-windup range
+    false,                         // p controller bounds threshold enabled
+    0,                             // p controller bounds cutoff enabled
+    1,                             // kP2 for when over threshold
+    0                              // range to target to apply max voltage
+);
+
+inline auto flywheel_motor =
+    std::make_shared<sylib::Motor>(17, 600, true, flywheel_speed_controller);
+inline lib::Flywheel flywheel(flywheel_motor);
 
 // Catapult
 inline auto catapult_motor = std::make_shared<pros::Motor>(22);

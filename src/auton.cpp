@@ -24,86 +24,37 @@
 
 void autonomous() {
   catapult.set_state(lib::CatapultState::Idle);
-  printf("starting movement\n");
-  chassis.moveTo(0, 10, 0, 8000);
-  printf("ended movement\n");
+
+  chassis.setPose(-15, 55, 275);
+
+  // Move to goal
+  chassis.moveTo(-60, 30, 180, 4000);
 
   switch (lib::selector::auton) {
-    case 1:  // Defensive simple
-      /*
-      // deploy the intake
-      chassis.moveTo(0, 10, 0, 0);
-      intake.set_state(lib::IntakeState::Reversed);
-      pros::delay(500);
-      intake.set_state(lib::IntakeState::Idle);
-      pros::delay(500);
+    case 1:
+      // Offensive side
+      // chassis.setPose(-15, 55, 275);
 
-      // move to the match load
-      chassis.moveTo(6, 9, 50, 4000);
-      pros::delay(50);
-      flaps.set_state(lib::FlapState::Expanded);
-      pros::delay(1000);
-      chassis.turnTo(12, 9, 2000);
-      pros::delay(1000);
-      flaps.set_state(lib::FlapState::Idle);
-      chassis.moveTo(17, 19, 90, 4000, false, true, 8, 0.4);
-      intake.set_state(lib::IntakeState::Reversed);
-      pros::delay(2000);
-      intake.set_state(lib::IntakeState::Idle);
-      pros::delay(500);
-      // move to touch the bar
-      chassis.moveTo(-7, -35, 0, 5000, false, false);
-      */
+      // Move to goal
+      // chassis.moveTo(-60, 30, 180, 4000);
+
+      // Turn on intake
+      // intake.set_state(lib::IntakeState::Reversed);
+
+      // Ram into goal
+      // chassis.moveTo(-60, 0, 180, 2000);
+      // intake.set_state(lib::IntakeState::Idle);
+
+      // Drive back to bar
 
       break;
     case 2:
-      // Offensive Simple
-      printf("starting auton\n");
-      intake.set_state(lib::IntakeState::Reversed);
-      pros::delay(500);
-      intake.set_state(lib::IntakeState::Idle);
-      pros::delay(500);
-      printf("started movement\n");
-      chassis.moveTo(-19, 25, -90, 4000);
-      printf("finished movement\n");
-      intake.set_state(lib::IntakeState::Reversed);
-      chassis.moveTo(-50, 25, -90, 4000);
-      intake.set_state(lib::IntakeState::Idle);
-      /*
-      chassis.moveTo(24, 12, 3000);
-      intake.set_state(lib::IntakeState::Running);
-      chassis.turnTo(72, 12, 2000);
-      intake.set_state(lib::IntakeState::Idle);
-      chassis.turnTo(72, 48, 2000);
-      chassis.moveTo(72, 48, 3000);
-      intake.set_state(lib::IntakeState::Reversed);
-      */
+      // Defensive
+
       break;
     case 3:  // Skills
-      intake.set_state(lib::IntakeState::Reversed);
-      pros::delay(500);
-      intake.set_state(lib::IntakeState::Idle);
-      pros::delay(500);
-
-      catapult.set_state(lib::CatapultState::Repeating);
-
-      pros::delay(50000);
-
-      catapult.set_state(lib::CatapultState::Loading);
-
-      chassis.tank(127, 127);
-
-      /*
-      chassis.turnTo(132, 48, 2000);
-      chassis.moveTo(132, 48, 3000);
-      intake.set_state(lib::IntakeState::Running);
-      */
       break;
     case 4:  // Do nothing
-      break;
-    case 5:  // Ram
-      chassis.tank(127, 127);
-      intake.set_state(lib::IntakeState::Reversed);
       break;
   }
 }

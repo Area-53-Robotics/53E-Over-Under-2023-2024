@@ -17,8 +17,7 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  catapult.set_state(lib::CatapultState::Idle);
-  autonomous();
+
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -36,19 +35,10 @@ void opcontrol() {
       flaps.set_state(lib::FlapState::Idle);
     }
 
-    // Catapult control
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+    // Flywheel control
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
       controller.rumble(".");
-      catapult.fire();
-    }
-
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-      controller.rumble(".");
-      catapult.toggle_repeating();
-    }
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
-      controller.rumble(".");
-      catapult.toggle_disabled();
+      flywheel.toggle();
     }
 
     // Drivetrain control
