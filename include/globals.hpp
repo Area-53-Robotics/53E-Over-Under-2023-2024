@@ -94,8 +94,8 @@ inline lemlib::ControllerSettings lateralController{
 
 // angular motion controller
 inline lemlib::ControllerSettings angularController{
-    5,     // kP
-    10,    // kD
+    3,     // kP
+    25,    // kD
     1,     // small exit range
     1000,  // small exit timeout
     3,     // large exit range

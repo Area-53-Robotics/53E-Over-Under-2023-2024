@@ -23,12 +23,6 @@
 // ASSET(to_bar_txt)
 
 void autonomous() {
-  catapult.set_state(lib::CatapultState::Idle);
-
-  chassis.setPose(-15, 55, 275);
-
-  // Move to goal
-  chassis.moveTo(-60, 30, 180, 4000);
 
   switch (lib::selector::auton) {
     case 1:
@@ -50,9 +44,39 @@ void autonomous() {
       break;
     case 2:
       // Defensive
+      chassis.moveTo(20, 40, 45, 4000);
+      chassis.waitUntilDone();
+      chassis.moveTo(20, 30, 0, 3000, false);
+      chassis.waitUntilDone();
+      chassis.moveTo(20, 40, 45, 4000);
+      chassis.waitUntilDone();
+      //flywheel.set_state(lib::FlywheelState::Spinning);
+      //pros::delay(300);
+      //flywheel.set_state(lib::FlywheelState::Idle);
+     /* chassis.moveTo(0, 10, 0, 4000);
+      chassis.waitUntilDone();
+      flaps.set_state(lib::FlapState::Expanded);
+      pros::delay(500);
+      chassis.moveTo(2, -14, 7, 1000, false);
+      chassis.waitUntilDone();
+      flaps.set_state(lib::FlapState::Idle);
+      chassis.moveTo(11, 34, 0, 3000);
+      chassis.moveTo(25, 25, 90, 4000);
+      flaps.set_state(lib::FlapState::Expanded);
+      chassis.waitUntilDone();
+      */
 
       break;
     case 3:  // Skills
+      chassis.setPose(-35, -58, 300);
+      // Move to goal
+      chassis.moveTo(-50, -50, 45, 4000, false); 
+      chassis.moveTo(35, -59, 90, 5000);
+      chassis.moveTo(18, -1, 90, 4000);
+      flaps.set_state(lib::FlapState::Expanded);
+      chassis.moveTo(42, 0, 90, 3000);
+      flaps.set_state(lib::FlapState::Idle);
+
       break;
     case 4:  // Do nothing
       break;
