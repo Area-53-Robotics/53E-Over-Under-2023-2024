@@ -44,12 +44,23 @@ void autonomous() {
       break;
     case 2:
       // Defensive
-      chassis.moveTo(20, 40, 45, 4000);
+      chassis.moveTo(-5, 45, 0, 2000);
+      chassis.turnTo(10, 45, 3000);
+      chassis.moveTo(20, 45, 110, 2000);
+      intake.set_state(lib::IntakeState::Reversed);
+      pros::delay(3000);
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.moveTo(-5, 45, 90, 3000, false);
+      chassis.moveTo(-35, 15, 270, 3000);
       chassis.waitUntilDone();
-      chassis.moveTo(20, 30, 0, 3000, false);
+      flaps.set_state(lib::FlapState::Expanded);
       chassis.waitUntilDone();
-      chassis.moveTo(20, 40, 45, 4000);
-      chassis.waitUntilDone();
+      //chassis.moveTo(5, 45, 270, 2000, false);
+      //chassis.moveTo(20, 45, 90, 2000);
+      //chassis.waitUntilDone();
+      
+      
+
       //flywheel.set_state(lib::FlywheelState::Spinning);
       //pros::delay(300);
       //flywheel.set_state(lib::FlywheelState::Idle);
