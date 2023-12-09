@@ -43,6 +43,9 @@ void autonomous() {
       break;
     case 2:
       // Defensive
+      chassis.moveToPose(0, 10, 0, 4000);
+
+      /*
       chassis.moveToPose(-5, 45, 0, 2000);
       chassis.turnTo(10, 45, 3000);
       chassis.moveToPose(20, 45, 110, 2000);
@@ -54,9 +57,8 @@ void autonomous() {
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Expanded);
       chassis.waitUntilDone();
-      // chassis.moveTo(5, 45, 270, 2000, false);
-      // chassis.moveTo(20, 45, 90, 2000);
-      // chassis.waitUntilDone();
+      */
+     
 
       // flywheel.set_state(lib::FlywheelState::Spinning);
       // pros::delay(300);

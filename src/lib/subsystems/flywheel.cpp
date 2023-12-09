@@ -3,9 +3,13 @@
 #include <cstdio>
 #include <memory>
 
+#include "sylib/motor.hpp"
 #include "sylib/sylib.hpp"
 namespace lib {
-Flywheel::Flywheel(std::shared_ptr<sylib::Motor> i_motor) { motor = i_motor; };
+Flywheel::Flywheel(std::shared_ptr<sylib::Motor> i_motor, std::shared_ptr<sylib::Addrled> i_led) {
+  motor = i_motor;
+  led = i_led;
+};
 
 void Flywheel::loop() {
   switch (get_state()) {

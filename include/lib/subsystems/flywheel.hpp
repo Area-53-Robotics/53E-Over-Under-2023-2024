@@ -12,12 +12,14 @@ enum class FlywheelState { Spinning, Idle };
 
 class Flywheel : public StateMachine<FlywheelState>, public TaskWrapper {
  public:
-  Flywheel(std::shared_ptr<sylib::Motor> i_motor);
+  Flywheel(std::shared_ptr<sylib::Motor> i_motor, std::shared_ptr<sylib::Addrled> i_led);
+
 
   void toggle();
 
  private:
   void loop() override;
   std::shared_ptr<sylib::Motor> motor;
+  std::shared_ptr<sylib::Addrled> led;
 };
 }  // namespace lib

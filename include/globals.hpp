@@ -19,7 +19,10 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 inline sylib::Addrled led(22, 4, 20);
 
+
 // Flywheel
+inline sylib::Addrled flywheel_led(0, 0, 0);
+
 inline sylib::SpeedControllerInfo flywheel_speed_controller(
     [](double rpm) { return 5; },  // kV function
     1,                             // kP
@@ -36,6 +39,7 @@ inline sylib::SpeedControllerInfo flywheel_speed_controller(
 
 inline auto flywheel_motor =
     std::make_shared<sylib::Motor>(17, 600, true, flywheel_speed_controller);
+
 inline lib::Flywheel flywheel(flywheel_motor);
 
 // Catapult
@@ -83,8 +87,8 @@ inline lemlib::OdomSensors sensors{
 
 // lateral motion controller
 inline lemlib::ControllerSettings lateralController{
-    20,    // kP
-    40,    // kD
+    25,    // kP
+    45,    // kD
     1,     // small exit range
     1000,  // small exit timeout
     3,     // large error range
