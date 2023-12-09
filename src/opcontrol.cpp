@@ -18,10 +18,10 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-//autonomous();
-    bool is_chassis_reversed = false;
+  // autonomous();
+  bool is_chassis_reversed = false;
 
-    while (true) {
+  while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       intake.set_state(lib::IntakeState::Running);
@@ -48,15 +48,13 @@ void opcontrol() {
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-        is_chassis_reversed = !is_chassis_reversed;
-        controller.rumble(".");
+      is_chassis_reversed = !is_chassis_reversed;
+      controller.rumble(".");
     }
     if (is_chassis_reversed) {
       chassis.tank(-right, -left, 5);
-    }
-    else {
+    } else {
       chassis.tank(left, right, 5);
     }
 
