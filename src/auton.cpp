@@ -23,7 +23,6 @@
 // ASSET(to_bar_txt)
 
 void autonomous() {
-
   switch (lib::selector::auton) {
     case 1:
       // Offensive side
@@ -44,48 +43,46 @@ void autonomous() {
       break;
     case 2:
       // Defensive
-      chassis.moveTo(-5, 45, 0, 2000);
+      chassis.moveToPose(-5, 45, 0, 2000);
       chassis.turnTo(10, 45, 3000);
-      chassis.moveTo(20, 45, 110, 2000);
+      chassis.moveToPose(20, 45, 110, 2000);
       intake.set_state(lib::IntakeState::Reversed);
       pros::delay(3000);
       intake.set_state(lib::IntakeState::Idle);
-      chassis.moveTo(-5, 45, 90, 3000, false);
-      chassis.moveTo(-35, 15, 270, 3000);
+      chassis.moveToPose(-5, 45, 90, 3000, false);
+      chassis.moveToPose(-35, 15, 270, 3000);
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Expanded);
       chassis.waitUntilDone();
-      //chassis.moveTo(5, 45, 270, 2000, false);
-      //chassis.moveTo(20, 45, 90, 2000);
-      //chassis.waitUntilDone();
-      
-      
+      // chassis.moveTo(5, 45, 270, 2000, false);
+      // chassis.moveTo(20, 45, 90, 2000);
+      // chassis.waitUntilDone();
 
-      //flywheel.set_state(lib::FlywheelState::Spinning);
-      //pros::delay(300);
-      //flywheel.set_state(lib::FlywheelState::Idle);
-     /* chassis.moveTo(0, 10, 0, 4000);
-      chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Expanded);
-      pros::delay(500);
-      chassis.moveTo(2, -14, 7, 1000, false);
-      chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Idle);
-      chassis.moveTo(11, 34, 0, 3000);
-      chassis.moveTo(25, 25, 90, 4000);
-      flaps.set_state(lib::FlapState::Expanded);
-      chassis.waitUntilDone();
-      */
+      // flywheel.set_state(lib::FlywheelState::Spinning);
+      // pros::delay(300);
+      // flywheel.set_state(lib::FlywheelState::Idle);
+      /* chassis.moveTo(0, 10, 0, 4000);
+       chassis.waitUntilDone();
+       flaps.set_state(lib::FlapState::Expanded);
+       pros::delay(500);
+       chassis.moveTo(2, -14, 7, 1000, false);
+       chassis.waitUntilDone();
+       flaps.set_state(lib::FlapState::Idle);
+       chassis.moveTo(11, 34, 0, 3000);
+       chassis.moveTo(25, 25, 90, 4000);
+       flaps.set_state(lib::FlapState::Expanded);
+       chassis.waitUntilDone();
+       */
 
       break;
     case 3:  // Skills
       chassis.setPose(-35, -58, 300);
       // Move to goal
-      chassis.moveTo(-50, -50, 45, 4000, false); 
-      chassis.moveTo(35, -59, 90, 5000);
-      chassis.moveTo(18, -1, 90, 4000);
+      chassis.moveToPose(-50, -50, 45, 4000, false);
+      chassis.moveToPose(35, -59, 90, 5000);
+      chassis.moveToPose(18, -1, 90, 4000);
       flaps.set_state(lib::FlapState::Expanded);
-      chassis.moveTo(42, 0, 90, 3000);
+      chassis.moveToPose(42, 0, 90, 3000);
       flaps.set_state(lib::FlapState::Idle);
 
       break;
