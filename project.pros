@@ -22,7 +22,7 @@
                 "version": "1.2.0"
             },
             "LemLib": {
-                "location": "/home/battlechicken/.config/pros/templates/LemLib@0.5.0-rc2",
+                "location": "/home/battlechicken/.config/pros/templates/LemLib@0.5.0-rc3",
                 "metadata": {
                     "origin": "local"
                 },
@@ -30,33 +30,33 @@
                 "py/object": "pros.conductor.templates.local_template.LocalTemplate",
                 "supported_kernels": "^3.8.0",
                 "system_files": [
-                    "firmware\\asset.mk",
-                    "include\\lemlib\\logger\\infoSink.hpp",
-                    "include\\fmt\\format.h",
-                    "include\\lemlib\\logger\\message.hpp",
-                    "static\\example.txt",
                     "include\\lemlib\\chassis\\odom.hpp",
-                    "include\\lemlib\\logger\\buffer.hpp",
-                    "include\\lemlib\\chassis\\chassis.hpp",
-                    "include\\lemlib\\util.hpp",
-                    "include\\lemlib\\pose.hpp",
+                    "static\\example.txt",
                     "include\\fmt\\args.h",
-                    "include\\lemlib\\pid.hpp",
-                    "include\\lemlib\\logger\\logger.hpp",
-                    "include\\lemlib\\logger\\stdout.hpp",
-                    "include\\lemlib\\timer.hpp",
-                    "include\\lemlib\\asset.hpp",
                     "include\\fmt\\core.h",
-                    "include\\lemlib\\chassis\\trackingWheel.hpp",
-                    "include\\fmt\\format-inl.h",
                     "firmware\\LemLib.a",
+                    "include\\lemlib\\logger\\infoSink.hpp",
+                    "include\\lemlib\\pose.hpp",
+                    "include\\lemlib\\logger\\message.hpp",
                     "include\\lemlib\\logger\\baseSink.hpp",
+                    "include\\lemlib\\logger\\telemetrySink.hpp",
+                    "include\\fmt\\format.h",
+                    "include\\lemlib\\util.hpp",
+                    "include\\lemlib\\timer.hpp",
+                    "include\\lemlib\\logger\\stdout.hpp",
                     "include\\lemlib\\api.hpp",
-                    "include\\lemlib\\logger\\telemetrySink.hpp"
+                    "include\\lemlib\\logger\\buffer.hpp",
+                    "include\\lemlib\\asset.hpp",
+                    "include\\lemlib\\chassis\\chassis.hpp",
+                    "include\\lemlib\\pid.hpp",
+                    "firmware\\asset.mk",
+                    "include\\fmt\\format-inl.h",
+                    "include\\lemlib\\chassis\\trackingWheel.hpp",
+                    "include\\lemlib\\logger\\logger.hpp"
                 ],
                 "target": "v5",
                 "user_files": [],
-                "version": "0.5.0-rc2"
+                "version": "0.5.0-rc3"
             },
             "kernel": {
                 "location": "/home/battlechicken/.config/pros/templates/kernel@3.8.0",
