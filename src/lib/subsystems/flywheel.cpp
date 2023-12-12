@@ -6,12 +6,21 @@
 #include "sylib/motor.hpp"
 #include "sylib/sylib.hpp"
 namespace lib {
-Flywheel::Flywheel(std::shared_ptr<sylib::Motor> i_motor, std::shared_ptr<sylib::Addrled> i_led) {
+Flywheel::Flywheel(std::shared_ptr<sylib::Motor> i_motor,
+                   std::shared_ptr<sylib::Addrled> i_led) {
   motor = i_motor;
   led = i_led;
 };
 
+constexpr int RED = 0xff0000;
+constexpr int GREEN = 0x00ff00;
+
 void Flywheel::loop() {
+  if (motor->get_velocity_error() > 50) {
+    led->set_all(RED);
+  } else {
+    led->set_all(GREEN);
+  }
   switch (get_state()) {
     case FlywheelState::Idle:
       motor->stop();

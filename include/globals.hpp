@@ -19,10 +19,7 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 inline sylib::Addrled led(22, 4, 20);
 
-
 // Flywheel
-inline sylib::Addrled flywheel_led(0, 0, 0);
-
 inline sylib::SpeedControllerInfo flywheel_speed_controller(
     [](double rpm) { return 5; },  // kV function
     1,                             // kP
@@ -40,12 +37,9 @@ inline sylib::SpeedControllerInfo flywheel_speed_controller(
 inline auto flywheel_motor =
     std::make_shared<sylib::Motor>(17, 600, true, flywheel_speed_controller);
 
-inline lib::Flywheel flywheel(flywheel_motor);
+inline auto flywheel_led = std::make_shared<sylib::Addrled>(22, 6, 10);
 
-// Catapult
-inline auto catapult_motor = std::make_shared<pros::Motor>(22);
-inline auto catapult_rotation_sensor = std::make_shared<pros::Rotation>(22);
-inline lib::Catapult catapult(catapult_motor, catapult_rotation_sensor);
+inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 
 // Flaps
 inline auto piston = std::make_shared<pros::ADIDigitalOut>('C');

@@ -20,8 +20,6 @@
  * from where it left off
  */
 
-// ASSET(to_bar_txt)
-
 void autonomous() {
   switch (lib::selector::auton) {
     case 1:
@@ -58,7 +56,6 @@ void autonomous() {
       flaps.set_state(lib::FlapState::Expanded);
       chassis.waitUntilDone();
       */
-     
 
       // flywheel.set_state(lib::FlywheelState::Spinning);
       // pros::delay(300);
