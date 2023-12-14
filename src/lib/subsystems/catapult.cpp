@@ -94,6 +94,5 @@ void Catapult::loop() {
       break;
     }
   }
-  pros::delay(20);
 };
 }  // namespace lib

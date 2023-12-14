@@ -12,8 +12,8 @@ enum class FlywheelState { Spinning, Idle };
 
 class Flywheel : public StateMachine<FlywheelState>, public TaskWrapper {
  public:
-  Flywheel(std::shared_ptr<sylib::Motor> i_motor, std::shared_ptr<sylib::Addrled> i_led);
-
+  Flywheel(std::shared_ptr<sylib::Motor> i_motor,
+           std::shared_ptr<sylib::Addrled> i_led);
 
   void toggle();
 

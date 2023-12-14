@@ -9,15 +9,20 @@
 #include "lib/subsystems/flaps.hpp"
 #include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
+#include "lib/utils/logger.hpp"
 #include "pros/adi.hpp"
 #include "sylib/sylib.hpp"
 
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
 
+inline lib::Logger logger;
+
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 inline sylib::Addrled led(22, 4, 20);
+
+inline auto flywheel_led = std::make_shared<sylib::Addrled>(22, 6, 10);
 
 // Flywheel
 inline sylib::SpeedControllerInfo flywheel_speed_controller(
@@ -36,8 +41,6 @@ inline sylib::SpeedControllerInfo flywheel_speed_controller(
 
 inline auto flywheel_motor =
     std::make_shared<sylib::Motor>(17, 600, true, flywheel_speed_controller);
-
-inline auto flywheel_led = std::make_shared<sylib::Addrled>(22, 6, 10);
 
 inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 

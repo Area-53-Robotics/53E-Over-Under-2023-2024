@@ -2,10 +2,10 @@
 #include <vector>
 
 #include "globals.hpp"
-#include "lemlib/logger/infoSink.hpp"
 #include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "lib/utils/auton_selector.hpp"
+#include "lib/utils/logger.hpp"
 #include "main.h"
 #include "pros/llemu.hpp"
 #include "pros/rtos.hpp"
@@ -27,22 +27,27 @@ void initialize() {
   chassis.calibrate();
 
   flywheel.start_task();
+  flywheel.set_rate(50);
   intake.start_task();
   flaps.start_task();
+
+  logger.start_task();
+  logger.set_rate(10);
+  logger.set_state(lib::LoggerMode::FirstInFirstOut);
 
   led.gradient(0x8B3AFD, 0x7DFF29, 0, 0, false, true);
   led.cycle(*led, 1);
 
   /*
-  pros::Task screenTask([=]() {
-    while (true) {
-      pros::lcd::print(0, "X: %f", chassis.getPose().x);
-      pros::lcd::print(1, "Y: %f", chassis.getPose().y);
-      pros::lcd::print(2, "Theta: %f", chassis.getPose().theta);
-      pros::delay(50);
-    }
-  });
-  //*/
+   pros::Task screenTask([=]() {
+  while (true) {
+    // pros::lcd::print(0, "X: %f", chassis.getPose().x);
+    // pros::lcd::print(1, "Y: %f", chassis.getPose().y);
+    // pros::lcd::print(2, "Theta: %f", chassis.getPose().theta);
+    pros::delay(50);
+  }
+});
+//*/
 }
 
 /**

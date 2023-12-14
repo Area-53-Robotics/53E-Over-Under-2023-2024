@@ -1,8 +1,8 @@
 #include <cmath>
 
 #include "globals.hpp"
+#include "lib/subsystems/intake.hpp"
 #include "main.h"
-#include "pros/misc.h"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -18,9 +18,6 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  // autonomous();
-  bool is_chassis_reversed = false;
-
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -47,16 +44,10 @@ void opcontrol() {
     // Drivetrain control
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    // left_motors.move(0);
+    // right_motors.move(0);
 
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-      is_chassis_reversed = !is_chassis_reversed;
-      controller.rumble(".");
-    }
-    if (is_chassis_reversed) {
-      chassis.tank(-right, -left, 5);
-    } else {
-      chassis.tank(left, right, 5);
-    }
+    // chassis.tank(left, right, 5);
 
     pros::delay(20);
   }

@@ -7,10 +7,12 @@ void TaskWrapper::start_task() {
     task = new pros::Task([this] {
       while (true) {
         this->loop();
-        pros::delay(20);
+        pros::delay(rate);
       }
     });
   }
 }
+
+void TaskWrapper::set_rate(int new_rate) { rate = new_rate; }
 
 };  // namespace lib
