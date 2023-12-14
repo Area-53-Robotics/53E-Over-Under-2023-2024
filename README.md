@@ -12,7 +12,7 @@ This project follows [Google's](https://google.github.io/styleguide/cppguide.htm
 
 ### Pragma Once
 
-Use of pragma once is permitted in the place of normal header guards. We only ever need to compile for one architecture, so using non-standard features is not an issue for us.
+Use of pragma once is permitted in the place of normal header guards. We only ever need to compile for one architecture, with the same compiler each time, so using non-standard features is not an issue for us.
 
 
 ### File names
