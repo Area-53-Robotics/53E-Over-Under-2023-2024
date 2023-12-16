@@ -18,6 +18,7 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+  
   bool is_drive_reversed = false;
   while (true) {
     // Intake Control
@@ -61,3 +62,4 @@ void opcontrol() {
     pros::delay(20);
   }
 }
+
