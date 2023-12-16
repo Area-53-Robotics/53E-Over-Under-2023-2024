@@ -8,7 +8,7 @@
 
 namespace lib {
 
-enum class FlywheelState { Spinning, Idle };
+enum class FlywheelState { Spinning, Reversed, Idle };
 
 class Flywheel : public StateMachine<FlywheelState>, public TaskWrapper {
  public:
