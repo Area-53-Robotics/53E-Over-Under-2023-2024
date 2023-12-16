@@ -34,6 +34,9 @@ void Flywheel::loop() {
     case FlywheelState::Spinning:
       motor->set_velocity_custom_controller(600);
       break;
+    case FlywheelState::Reversed:
+      motor->set_velocity_custom_controller(-600);
+      break;
   }
 }
 void Flywheel::toggle() {
