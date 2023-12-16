@@ -32,7 +32,7 @@ void Flywheel::loop() {
       motor->stop();
       break;
     case FlywheelState::Spinning:
-      motor->set_velocity_custom_controller(50);
+      motor->set_velocity_custom_controller(600);
       break;
   }
 }

@@ -18,6 +18,7 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+  bool is_drive_reversed = false;
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -42,13 +43,22 @@ void opcontrol() {
     }
 
     // Drivetrain control
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+      controller.rumble(".");
+      is_drive_reversed = !is_drive_reversed;
+    }
+
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-    // left_motors.move(0);
-    // right_motors.move(0);
 
-    // chassis.tank(left, right, 5);
+    if (is_drive_reversed) {
+      chassis.tank(-right, -left, 5);
+    } else {
+      chassis.tank(left, right, 5);
+    }
 
     pros::delay(20);
   }
 }
+
