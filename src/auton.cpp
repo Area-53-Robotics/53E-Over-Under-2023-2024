@@ -26,9 +26,9 @@ void autonomous() {
   switch (lib::selector::auton) {
     case 1:
       // Offensive side
-      flywheel.set_state(lib::IntakeState::Reversed);
+      flywheel.set_state(lib::FlywheelState::Spinning);
       pros::delay(500);
-      flywheel.set_state(lib::FlywheelState::Idle)
+      flywheel.set_state(lib::FlywheelState::Idle);
       intake.set_state(lib::IntakeState::Running);
       pros::delay(2000);
       intake.set_state(lib::IntakeState::Idle);
