@@ -25,64 +25,57 @@
 
 void autonomous() {
   switch (lib::selector::auton) {
-    case 1:
-      // Offensive side
+    case 1: // Offensive side
       flywheel.set_state(lib::FlywheelState::Reversed);
       pros::delay(500);
       flywheel.set_state(lib::FlywheelState::Idle);
+      chassis.moveToPoint(0, 35, 1000);
+      intake.set_state(lib::IntakeState::Reversed);
+      pros::delay(1000);
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.moveToPose(-24, 46, -90, 2000);
       intake.set_state(lib::IntakeState::Running);
       pros::delay(2000);
-      intake.set_state(lib::IntakeState::Idle);
-      chassis.moveToPose(-5, 45, 0, 2000);
-      chassis.turnTo(10, 45, 3000);
-      chassis.moveToPose(20, 45, 110, 2000);
+      chassis.turnTo(0, 50, 180, 1000);
       intake.set_state(lib::IntakeState::Reversed);
-      pros::delay(3000);
+      pros::delay(1000);
       intake.set_state(lib::IntakeState::Idle);
-      chassis.moveToPose(-35, 15, 270, 3000);
-      //chassis.waitUntilDone();
+      chassis.turnTo(-24, 70, -90, 1000);
+      chassis.moveToPoint(-24, 70, 1000);
+      intake.set_state(lib::IntakeState::Running);
+      pros::delay(2000);
+      chassis.turnTo(24, 70, 180, 1000);
+      intake.set_state(lib::IntakeState::Reversed);
+      pros::delay(1500);
+      intake.set_state(lib::IntakeState::Idle);
       flaps.set_state(lib::FlapState::Expanded);
-      //chassis.waitUntilDone();
-      // chassis.setPose(-15, 55, 275);
+      chassis.moveToPoint(24, 70, 2000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(0, 70, 1000, false);
+      chassis.waitUntilDone();
 
-      // Move to goal
-      // chassis.moveTo(-60, 30, 180, 4000);
 
-      // Turn on intake
-      // intake.set_state(lib::IntakeState::Reversed);
 
-      // Ram into goal
-      // chassis.moveTo(-60, 0, 180, 2000);
-      // intake.set_state(lib::IntakeState::Idle);
-
-      // Drive back to bar
 
       break;
-    case 2:
-      // x, y, theta
-      // x, y
-      // Defensive
+    case 2:  // Defensive
+      flywheel.set_state(lib::FlywheelState::Reversed);
+      pros::delay(500);
+      flywheel.set_state(lib::FlywheelState::Idle);
+      chassis.moveToPose(-12, 46, -45, 2000);
+      intake.set_state(lib::IntakeState::Reversed);
+      pros::delay(1000);
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.moveToPoint(-10, 20, 1000, false);
+      chassis.turnTo(0, 0, 180, 1000);
+      flaps.set_state(lib::FlapState::Expanded);
+      pros::delay(1000);
+      chassis.moveToPoint(10, 0, 2000);
+      flaps.set_state(lib::FlapState::Idle);
+      chassis.moveToPose(25, 0, -45, 2000);
+      chassis.waitUntilDone();
+
       
-      // chassis.moveTo(5, 45, 270, 2000, false);
-      // chassis.moveTo(20, 45, 90, 2000);
-      // chassis.waitUntilDone();
-
-      // flywheel.set_state(lib::FlywheelState::Spinning);
-      // pros::delay(300);
-      // flywheel.set_state(lib::FlywheelState::Idle);
-      /* chassis.moveTo(0, 10, 0, 4000);
-       chassis.waitUntilDone();
-       flaps.set_state(lib::FlapState::Expanded);
-       pros::delay(500);
-       chassis.moveTo(2, -14, 7, 1000, false);
-       chassis.waitUntilDone();
-       flaps.set_state(lib::FlapState::Idle);
-       chassis.moveTo(11, 34, 0, 3000);
-       chassis.moveTo(25, 25, 90, 4000);
-       flaps.set_state(lib::FlapState::Expanded);
-       chassis.waitUntilDone();
-       */
-
       break;
     case 3:  // Skills
       chassis.setPose(-35, -58, 300);
