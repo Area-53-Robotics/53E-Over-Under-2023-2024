@@ -85,7 +85,9 @@ inline lemlib::OdomSensors sensors{
 // lateral motion controller
 inline lemlib::ControllerSettings lateralController{
     25,    // kP
+    0, //kI
     45,    // kD
+    3, //anti windup
     1,     // small exit range
     1000,  // small exit timeout
     3,     // large error range
@@ -96,7 +98,9 @@ inline lemlib::ControllerSettings lateralController{
 // angular motion controller
 inline lemlib::ControllerSettings angularController{
     3,     // kP
+    0, //kI
     25,    // kD
+    3, //anti windup
     1,     // small exit range
     1000,  // small exit timeout
     3,     // large exit range
