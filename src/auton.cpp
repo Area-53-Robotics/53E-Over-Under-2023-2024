@@ -3,6 +3,7 @@
 #include "globals.hpp"
 #include "lib/subsystems/catapult.hpp"
 #include "lib/subsystems/flaps.hpp"
+#include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "lib/utils/auton_selector.hpp"
 #include "main.h"
@@ -26,7 +27,7 @@ void autonomous() {
   switch (lib::selector::auton) {
     case 1:
       // Offensive side
-      flywheel.set_state(lib::FlywheelState::Spinning);
+      flywheel.set_state(lib::FlywheelState::Reversed);
       pros::delay(500);
       flywheel.set_state(lib::FlywheelState::Idle);
       intake.set_state(lib::IntakeState::Running);
@@ -40,9 +41,9 @@ void autonomous() {
       intake.set_state(lib::IntakeState::Idle);
       chassis.moveTo(-5, 45, 90, 3000, false);
       chassis.moveTo(-35, 15, 270, 3000);
-      chassis.waitUntilDone();
+      //chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Expanded);
-      chassis.waitUntilDone();
+      //chassis.waitUntilDone();
       // chassis.setPose(-15, 55, 275);
 
       // Move to goal
