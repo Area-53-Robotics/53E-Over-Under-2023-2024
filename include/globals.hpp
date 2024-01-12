@@ -26,11 +26,11 @@ inline auto flywheel_led = std::make_shared<sylib::Addrled>(22, 6, 10);
 
 // Flywheel
 inline sylib::SpeedControllerInfo flywheel_speed_controller(
-    [](double rpm) { return 5; },  // kV function
-    1,                             // kP
-    1,                             // kI
-    1,                             // kD
-    1,                             // kH
+    [](double rpm) { return 0; },  // kV function
+    10,                            // kP
+    0.001,                         // kI
+    0,                             // kD
+    0,                             // kH
     false,                         // anti-windup enabled
     0,                             // anti-windup range
     false,                         // p controller bounds threshold enabled
