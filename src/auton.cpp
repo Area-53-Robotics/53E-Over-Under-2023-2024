@@ -1,5 +1,5 @@
 #include <cstdio>
-#include "lib/subsystems/catapult.hpp"
+
 #include "globals.hpp"
 #include "lib/subsystems/catapult.hpp"
 #include "lib/subsystems/flaps.hpp"
@@ -25,7 +25,7 @@
 
 void autonomous() {
   switch (lib::selector::auton) {
-    case 1: // Offensive side
+    case 1:  // Offensive side
       flywheel.set_state(lib::FlywheelState::Reversed);
       pros::delay(500);
       flywheel.set_state(lib::FlywheelState::Idle);
@@ -54,9 +54,6 @@ void autonomous() {
       chassis.moveToPoint(0, 70, 1000, false);
       chassis.waitUntilDone();
 
-
-
-
       break;
     case 2:  // Defensive
       flywheel.set_state(lib::FlywheelState::Reversed);
@@ -75,7 +72,6 @@ void autonomous() {
       chassis.moveToPose(25, 0, -45, 2000);
       chassis.waitUntilDone();
 
-      
       break;
     case 3:  // Skills
       chassis.setPose(-35, -58, 300);
