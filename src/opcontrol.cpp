@@ -36,6 +36,12 @@ void opcontrol() {
       flaps.set_state(lib::FlapState::Idle);
     }
 
+    //Hang control
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+      hang.set_state(lib::HangState::Expanded);
+      hang.toggle();
+    } 
+
     // Flywheel control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
       controller.rumble(".");

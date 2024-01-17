@@ -7,6 +7,7 @@
 #include "lemlib/api.hpp"
 #include "lib/subsystems/catapult.hpp"
 #include "lib/subsystems/flaps.hpp"
+#include "lib/subsystems/hang.hpp"
 #include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "lib/utils/logger.hpp"
@@ -47,6 +48,9 @@ inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 // Flaps
 inline auto piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(piston);
+
+inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('C');
+inline lib::Hang hang(piston);
 
 // Intake
 inline auto intake_motor = std::make_shared<pros::Motor>(2);
