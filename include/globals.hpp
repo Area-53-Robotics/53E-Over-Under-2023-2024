@@ -46,11 +46,12 @@ inline auto flywheel_motor =
 inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 
 // Flaps
-inline auto piston = std::make_shared<pros::ADIDigitalOut>('C');
-inline lib::Flaps flaps(piston);
+inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
+inline lib::Flaps flaps(flaps_piston);
 
-inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('C');
-inline lib::Hang hang(piston);
+// Hang
+inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E'd);
+inline lib::Hang hang(hang_piston);
 
 // Intake
 inline auto intake_motor = std::make_shared<pros::Motor>(2);

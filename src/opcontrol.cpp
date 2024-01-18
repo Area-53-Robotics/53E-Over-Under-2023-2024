@@ -38,7 +38,7 @@ void opcontrol() {
 
     //Hang control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
-      hang.set_state(lib::HangState::Expanded);
+      controller.rumble(".");
       hang.toggle();
     } 
 
