@@ -50,7 +50,7 @@ inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
 // Hang
-inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E'd);
+inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E');
 inline lib::Hang hang(hang_piston);
 
 // Intake
