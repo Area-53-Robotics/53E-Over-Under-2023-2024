@@ -19,8 +19,8 @@
  */
 
 void initialize() {
-  // pros::lcd::initialize();
-  lib::selector::init();
+  pros::lcd::initialize();
+  // lib::selector::init();
 
   flywheel.set_state(lib::FlywheelState::Idle);
   sylib::initialize();
@@ -38,16 +38,16 @@ void initialize() {
   led.gradient(0x8B3AFD, 0x7DFF29, 0, 0, false, true);
   led.cycle(*led, 1);
 
-  /*
-   pros::Task screenTask([=]() {
-  while (true) {
-    // pros::lcd::print(0, "X: %f", chassis.getPose().x);
-    // pros::lcd::print(1, "Y: %f", chassis.getPose().y);
-    // pros::lcd::print(2, "Theta: %f", chassis.getPose().theta);
-    pros::delay(50);
-  }
-});
-//*/
+  ///*
+  pros::Task screenTask([=]() {
+    while (true) {
+      pros::lcd::print(0, "X: %f", chassis.getPose().x);
+      pros::lcd::print(1, "Y: %f", chassis.getPose().y);
+      pros::lcd::print(2, "Theta: %f", chassis.getPose().theta);
+      pros::delay(50);
+    }
+  });
+  //*/
 }
 
 /**
