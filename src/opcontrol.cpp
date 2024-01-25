@@ -18,7 +18,6 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  chassis.moveToPoint(0, 10, 2000);
   bool is_drive_reversed = false;
   while (true) {
     // Intake Control
@@ -50,7 +49,6 @@ void opcontrol() {
     }
 
     // Drivetrain control
-
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
       controller.rumble(".");
       is_drive_reversed = !is_drive_reversed;
