@@ -50,7 +50,7 @@ inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
 // Hang
-inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E');
+inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
 inline lib::Hang hang(hang_piston);
 
 // Intake
@@ -67,8 +67,8 @@ inline lemlib::Drivetrain drivetrain{
     10,             // track width // TODO:  measure this value correctly
     4,              // wheel diameter
     342.85,         // wheel rpm
-    8               // chase power
-};
+    8               // chase power                          
+};                                                                                                                                                          
 
 inline pros::ADIEncoder left_enc('A', 'B', false);
 inline pros::ADIEncoder back_enc('G', 'H', false);
@@ -86,32 +86,32 @@ inline lemlib::OdomSensors sensors{
     &inertial_sensor       // inertial sensor
 };
 
-// linear motion controller
-inline lemlib::ControllerSettings linearController(
-    10,   // proportional gain (kP)
-    0,    // integral gain (kI)
-    35,   // derivative gain (kD)
-    3,    // anti windup
-    1,    // small error range, in inches
-    100,  // small error range timeout, in milliseconds
-    3,    // large error range, in inches
-    500,  // large error range timeout, in milliseconds
-    40    // maximum acceleration (slew)
-);
+// lateral motion controller
+inline lemlib::ControllerSettings lateralController{
+    15,    // kP
+    0, //kI
+    45,    // kD
+    3, //anti windup
+    1,     // small exit range
+    1000,  // small exit timeout
+    3,     // large error range
+    5000,  // large error timeout
+    0,     // slew
+};
 
 // angular motion controller
-inline lemlib::ControllerSettings angularController(
-    2,     // proportional gain (kP)
-    0.01,  // integral gain (kI)
-    30,    // derivative gain (kD)
-    3,     // anti windup
-    1,     // small error range, in degrees
-    100,   // small error range timeout, in milliseconds
-    3,     // large error range, in degrees
-    500,   // large error range timeout, in milliseconds
-    10     // maximum acceleration (slew)
-);
+inline lemlib::ControllerSettings angularController{
+    4,     // kP
+    0, //kI
+    30,    // kD
+    3, //anti windup
+    1,     // small exit range
+    1000,  // small exit timeout
+    3,     // large exit range
+    5000,  // large exit timeout
+    0,     // slew
+};
 
 // create the chassis
-inline lemlib::Chassis chassis(drivetrain, linearController, angularController,
+inline lemlib::Chassis chassis(drivetrain, lateralController, angularController,
                                sensors);

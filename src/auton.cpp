@@ -26,21 +26,36 @@
 void autonomous() {
   switch (lib::selector::auton) {
     case 1:  // Offensive side
-      flywheel.set_state(lib::FlywheelState::Reversed);
-      pros::delay(500);
-      flywheel.set_state(lib::FlywheelState::Idle);
-      chassis.moveToPoint(0, 35, 1000);
+      //flywheel.set_state(lib::FlywheelState::Reversed);
+      //pros::delay(500);
+      //flywheel.set_state(lib::FlywheelState::Idle);
+
+      
+      chassis.moveToPoint(0, 32, 2000);
+      chassis.waitUntilDone();
+      chassis.turnTo(20, 45, 1000);
       intake.set_state(lib::IntakeState::Reversed);
       pros::delay(1000);
-      intake.set_state(lib::IntakeState::Idle);
-      chassis.moveToPose(-24, 46, -90, 2000);
+      chassis.moveToPose(-30, 28, -22, 2000);
+      chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Running);
-      pros::delay(2000);
-      chassis.turnTo(0, 50, 180, 1000);
+      chassis.moveToPose(0, 46, 100, 2000);
+      pros::delay(1000);
       intake.set_state(lib::IntakeState::Reversed);
       pros::delay(1000);
       intake.set_state(lib::IntakeState::Idle);
-      chassis.turnTo(-24, 70, -90, 1000);
+      chassis.moveToPose(-40, 52, -90, 1000);
+      intake.set_state(lib::IntakeState::Running);
+      pros::delay(1500);
+      chassis.turnTo(30, 45, 1000);
+      intake.set_state(lib::IntakeState::Reversed);
+      pros::delay(500);
+      flaps.set_state(lib::FlapState::Expanded);
+      chassis.moveToPoint(20, 45, 3000);
+
+
+
+       /*
       chassis.moveToPoint(-24, 70, 1000);
       intake.set_state(lib::IntakeState::Running);
       pros::delay(2000);
@@ -53,6 +68,7 @@ void autonomous() {
       chassis.waitUntilDone();
       chassis.moveToPoint(0, 70, 1000, false);
       chassis.waitUntilDone();
+      */
 
       break;
     case 2:  // Defensive
@@ -76,10 +92,11 @@ void autonomous() {
     case 3:  // Skills
       chassis.setPose(-35, -58, 300);
       // Move to goal
-      chassis.moveToPose(35, -59, 90, 5000);
-      chassis.moveToPose(18, -1, 90, 4000);
-      chassis.moveToPose(42, 0, 90, 3000);
-      flaps.set_state(lib::FlapState::Idle);
+      //flywheel.set_state(lib::FlywheelState::Running); 
+      pros::delay(20000);
+      chassis.turnTo(-15, 20, 500);
+      chassis.moveToPoint(-15, 20, 1000);
+      
 
       break;
     case 4:  // Do nothing
