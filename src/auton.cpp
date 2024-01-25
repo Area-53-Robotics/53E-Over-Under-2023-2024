@@ -26,11 +26,10 @@
 void autonomous() {
   switch (lib::selector::auton) {
     case 1:  // Offensive side
-      //flywheel.set_state(lib::FlywheelState::Reversed);
-      //pros::delay(500);
-      //flywheel.set_state(lib::FlywheelState::Idle);
+      // flywheel.set_state(lib::FlywheelState::Reversed);
+      // pros::delay(500);
+      // flywheel.set_state(lib::FlywheelState::Idle);
 
-      
       chassis.moveToPoint(0, 32, 2000);
       chassis.waitUntilDone();
       chassis.turnTo(20, 45, 1000);
@@ -53,22 +52,20 @@ void autonomous() {
       flaps.set_state(lib::FlapState::Expanded);
       chassis.moveToPoint(20, 45, 3000);
 
-
-
-       /*
-      chassis.moveToPoint(-24, 70, 1000);
-      intake.set_state(lib::IntakeState::Running);
-      pros::delay(2000);
-      chassis.turnTo(24, 70, 180, 1000);
-      intake.set_state(lib::IntakeState::Reversed);
-      pros::delay(1500);
-      intake.set_state(lib::IntakeState::Idle);
-      flaps.set_state(lib::FlapState::Expanded);
-      chassis.moveToPoint(24, 70, 2000);
-      chassis.waitUntilDone();
-      chassis.moveToPoint(0, 70, 1000, false);
-      chassis.waitUntilDone();
-      */
+      /*
+     chassis.moveToPoint(-24, 70, 1000);
+     intake.set_state(lib::IntakeState::Running);
+     pros::delay(2000);
+     chassis.turnTo(24, 70, 180, 1000);
+     intake.set_state(lib::IntakeState::Reversed);
+     pros::delay(1500);
+     intake.set_state(lib::IntakeState::Idle);
+     flaps.set_state(lib::FlapState::Expanded);
+     chassis.moveToPoint(24, 70, 2000);
+     chassis.waitUntilDone();
+     chassis.moveToPoint(0, 70, 1000, false);
+     chassis.waitUntilDone();
+     */
 
       break;
     case 2:  // Defensive
@@ -92,11 +89,10 @@ void autonomous() {
     case 3:  // Skills
       chassis.setPose(-35, -58, 300);
       // Move to goal
-      //flywheel.set_state(lib::FlywheelState::Running); 
+      // flywheel.set_state(lib::FlywheelState::Running);
       pros::delay(20000);
       chassis.turnTo(-15, 20, 500);
       chassis.moveToPoint(-15, 20, 1000);
-      
 
       break;
     case 4:  // Do nothing
