@@ -19,6 +19,7 @@
  */
 void opcontrol() {
   bool is_drive_reversed = false;
+  hang.set_state(lib::HangState::Expanded);
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -47,6 +48,14 @@ void opcontrol() {
       controller.rumble(".");
       flywheel.toggle();
     }
+    
+    /*
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      flywheel.set_state(lib::FlywheelState::Reversed);
+    } else {
+      flywheel.set_state(lib::FlywheelState::Idle);
+    }
+    */
 
     // Drivetrain control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {

@@ -30,6 +30,7 @@ void initialize() {
   flywheel.set_rate(50);
   intake.start_task();
   flaps.start_task();
+  hang.start_task();
 
   logger.start_task();
   logger.set_rate(10);

@@ -41,7 +41,7 @@ inline sylib::SpeedControllerInfo flywheel_speed_controller(
 );
 
 inline auto flywheel_motor =
-    std::make_shared<sylib::Motor>(6, 600, true, flywheel_speed_controller);
+    std::make_shared<sylib::Motor>(5, 600, true, flywheel_speed_controller);
 
 inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 
