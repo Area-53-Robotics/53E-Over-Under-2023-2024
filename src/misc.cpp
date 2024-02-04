@@ -32,9 +32,9 @@ void initialize() {
   flaps.start_task();
   hang.start_task();
 
-  logger.start_task();
-  logger.set_rate(10);
-  logger.set_state(lib::LoggerMode::FirstInFirstOut);
+  //logger.start_task();
+  // logger.set_rate(10);
+  // logger.set_state(lib::LoggerMode::FirstInFirstOut);
 
   led.gradient(0x8B3AFD, 0x7DFF29, 0, 0, false, true);
   led.cycle(*led, 1);

@@ -41,7 +41,7 @@ inline sylib::SpeedControllerInfo flywheel_speed_controller(
 );
 
 inline auto flywheel_motor =
-    std::make_shared<sylib::Motor>(5, 600, true, flywheel_speed_controller);
+    std::make_shared<sylib::Motor>(4, 600, true, flywheel_speed_controller);
 
 inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 
@@ -59,7 +59,7 @@ inline lib::Intake intake(intake_motor);
 
 // Drivetrain
 inline pros::Motor_Group left_motors({-11, -19, 20});
-inline pros::Motor_Group right_motors({1, 8, -10});
+inline pros::Motor_Group right_motors({1, 8, -9});
 
 inline lemlib::Drivetrain drivetrain{
     &left_motors,   // left drivetrain motors

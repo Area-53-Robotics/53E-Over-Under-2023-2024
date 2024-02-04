@@ -1,8 +1,10 @@
 #include <cmath>
 
 #include "globals.hpp"
+#include "lib/subsystems/flywheel.hpp"
 #include "lib/subsystems/intake.hpp"
 #include "main.h"
+#include "pros/misc.h"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -18,6 +20,8 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+  printf("opcontrol started\n");
+
   bool is_drive_reversed = false;
   hang.set_state(lib::HangState::Expanded);
   while (true) {
@@ -47,6 +51,12 @@ void opcontrol() {
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
       controller.rumble(".");
       flywheel.toggle();
+    }
+
+    // Flywheel control
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      controller.rumble(".");
+      flywheel.set_state(lib::FlywheelState::Reversed);
     }
     
     /*
