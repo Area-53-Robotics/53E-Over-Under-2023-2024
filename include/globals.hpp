@@ -50,8 +50,10 @@ inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
 // Hang
+inline pros::ADIDigitalOut extra_piston_thingy({{6,'A'}});
+inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>(extra_piston_thingy);
 inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E');
-inline lib::Hang hang(hang_piston);
+inline lib::Hang hang(hang_piston, extra_piston);
 
 // Intake
 inline auto intake_motor = std::make_shared<pros::Motor>(2);
@@ -59,7 +61,7 @@ inline lib::Intake intake(intake_motor);
 
 // Drivetrain
 inline pros::Motor_Group left_motors({-11, -19, 20});
-inline pros::Motor_Group right_motors({1, 8, -9});
+inline pros::Motor_Group right_motors({1, -8, 10});
 
 inline lemlib::Drivetrain drivetrain{
     &left_motors,   // left drivetrain motors

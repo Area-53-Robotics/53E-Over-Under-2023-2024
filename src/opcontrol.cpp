@@ -43,8 +43,12 @@ void opcontrol() {
 
     // Hang control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+      printf("workingone\n");
       controller.rumble(".");
       hang.toggle();
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y)){
+      printf("workingtwo\n");
+      hang.set_state(lib::HangState::Boosted);
     }
 
     // Flywheel control
