@@ -84,9 +84,9 @@ void autonomous() {
       chassis.moveToPoint(8, 0, 2000, false); //move to starting points
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);
-      chassis.moveToPoint(-10, -10, 1500);
+      chassis.moveToPoint(-10, -10, 1500);//move back to start don't ask why its -10 bc the bot wasnt cooperating :/ 
       chassis.waitUntilDone();
-      chassis.turnTo(36, -15, 1000);
+      chassis.turnTo(36, -15, 1000);//turn to bar
       pros::delay(2000);
       chassis.moveToPoint(30, -8, 1000); //touch bar w ziptie
 
@@ -99,7 +99,7 @@ void autonomous() {
       chassis.turnTo(24, 24, 1000);
       chassis.moveToPoint(-17, 0, 1000, false); //back into zone for matchloading
       chassis.waitUntilDone();
-      flywheel.set_state(lib::FlywheelState::Spinning);
+      flywheel.set_state(lib::FlywheelState::Spinning);//spin flywheel while touching match load zone
       pros::delay(30000);
       chassis.waitUntilDone();
       hang.set_state(lib::HangState::Idle);
