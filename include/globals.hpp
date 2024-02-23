@@ -50,8 +50,8 @@ inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
 // Hang
-inline pros::ADIDigitalOut extra_piston_thingy({{6,'A'}});
-inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>(extra_piston_thingy);
+// inline pros::ADIDigitalOut extra_piston_thingy({{6,'A'}});
+inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>('X');
 inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E');
 inline lib::Hang hang(hang_piston, extra_piston);
 

@@ -4,8 +4,8 @@
 
 // selector configuration
 #define HUE 120  // color of theme from 0-360
-#define DEFAULT 1
-#define AUTONS "Offensive", "Defensive", "Skills", "Nothing"
+#define DEFAULT 0
+#define AUTONS "Offensive", "Defensive", "Nothing"
 
 namespace lib {
 namespace selector {

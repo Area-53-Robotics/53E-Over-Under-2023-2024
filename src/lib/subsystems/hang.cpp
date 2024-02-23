@@ -2,23 +2,26 @@
 
 #include <cstdio>
 namespace lib {
-Hang::Hang(std::shared_ptr<pros::ADIDigitalOut> i_piston, std::shared_ptr<pros::ADIDigitalOut> i_extra_piston) {
+Hang::Hang(std::shared_ptr<pros::ADIDigitalOut> i_piston,
+           std::shared_ptr<pros::ADIDigitalOut> i_extra_piston) {
   piston = i_piston;
-  extra_piston=i_extra_piston;
+  extra_piston = i_extra_piston;
 };
 
 void Hang::loop() {
   switch (get_state()) {
     case HangState::Expanded:
       piston->set_value(true);
+      extra_piston->set_value(false);
       break;
     case HangState::Idle:
       piston->set_value(false);
+      extra_piston->set_value(false);
       break;
     case HangState::Boosted:
+      piston->set_value(true);
       extra_piston->set_value(true);
       break;
-
   }
 }
 
