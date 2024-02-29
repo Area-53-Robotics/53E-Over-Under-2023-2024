@@ -14,10 +14,17 @@
 #include "pros/adi.hpp"
 #include "sylib/sylib.hpp"
 
+// This macro constant controls whether the subsystems send telemetry or not
+#define LOGGING
+#define LOGGING_FLYWHEEL_ROUTE 2
+#define LOGGING_INTAKE_ROUTE 4
+
 // WARNING: calls to different devices with the same ports will cause the
 // program to silently crash
 
+#ifdef LOGGING
 inline lib::Logger logger;
+#endif
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
@@ -56,7 +63,7 @@ inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E');
 inline lib::Hang hang(hang_piston, extra_piston);
 
 // Intake
-inline auto intake_motor = std::make_shared<pros::Motor>(2);
+inline auto intake_motor = std::make_shared<pros::Motor>(-2);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain

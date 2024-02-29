@@ -46,7 +46,7 @@ void opcontrol() {
       printf("workingone\n");
       controller.rumble(".");
       hang.toggle();
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y)){
+    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
       printf("workingtwo\n");
       hang.set_state(lib::HangState::Boosted);
     }
@@ -62,7 +62,7 @@ void opcontrol() {
       controller.rumble(".");
       flywheel.set_state(lib::FlywheelState::Reversed);
     }
-    
+
     /*
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       flywheel.set_state(lib::FlywheelState::Reversed);

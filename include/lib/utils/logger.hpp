@@ -5,7 +5,7 @@
 
 #include "pros/rtos.hpp"
 #include "state_machine.hpp"
-#include "task-wrapper.hpp"
+#include "task_wrapper.hpp"
 
 namespace lib {
 

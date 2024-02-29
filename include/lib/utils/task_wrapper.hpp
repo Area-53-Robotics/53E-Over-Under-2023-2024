@@ -18,7 +18,7 @@ class TaskWrapper {
   void set_rate(int new_rate);
 
  private:
-  int rate = 20;
+  int rate = 50;
   pros::Task *task{nullptr};
 };
 

@@ -24,8 +24,11 @@ void Flywheel::loop() {
     led->set_all(GREEN);
   }
 
-  // logger.telemetry(fmt::format("{},{},{},{},{}", 2, 0,
-  // motor->get_p_voltage(), motor->get_i_voltage(), motor->get_d_voltage()));
+#ifdef LOGGING
+  logger.telemetry(fmt::format("{},{},{},{},{}", LOGGING_FLYWHEEL_ROUTE, 0,
+                               motor->get_p_voltage(), motor->get_i_voltage(),
+                               motor->get_d_voltage()));
+#endif
 
   switch (get_state()) {
     case FlywheelState::Idle:

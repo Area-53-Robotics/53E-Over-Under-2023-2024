@@ -2,7 +2,7 @@
 
 #include "api.h"
 #include "lib/utils/state_machine.hpp"
-#include "lib/utils/task-wrapper.hpp"
+#include "lib/utils/task_wrapper.hpp"
 #include "sylib/motor.hpp"
 #include "sylib/sylib.hpp"
 
