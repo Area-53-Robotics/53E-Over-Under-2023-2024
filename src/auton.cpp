@@ -9,6 +9,9 @@
 #include "main.h"
 #include "pros/rtos.hpp"
 
+ASSET(firstpttwo_txt);
+ASSET(sixballend_txt);
+
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -22,6 +25,8 @@
  */
 
 // ASSET(to_bar_txt)
+//ASSET(path_jerryio_txt)
+//chassis.follow(path_jerryio_txt, 15, 5000);
 
 void autonomous() {
   switch (lib::selector::auton) {
@@ -57,7 +62,6 @@ void autonomous() {
       chassis.moveToPoint(14, 48, 2000);  // push in all four triballs
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);
-
       /*
       //offensive w 9080c
       hang.set_state(lib::HangState::Expanded);
@@ -137,8 +141,11 @@ void autonomous() {
       flaps.set_state(lib::FlapState::Expanded);  // open wings
       chassis.moveToPoint(75, 70, 2000);          // push into goal
       chassis.waitUntilDone();
+      chassis.moveToPoint(50, 65, 1500, false);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(75, 70, 2000);
+      chassis.waitUntilDone();
       chassis.moveToPoint(60, 65, 1500, false);
-
       /*
       chassis.moveToPoint(60, 55, 200
       0, false);
