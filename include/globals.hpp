@@ -28,7 +28,7 @@ inline lib::Logger logger;
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-inline sylib::Addrled led(22, 4, 20);
+inline sylib::Addrled led(22, -1, 20);
 
 inline auto flywheel_led = std::make_shared<sylib::Addrled>(22, 6, 10);
 
@@ -57,8 +57,7 @@ inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
 // Hang
-// inline pros::ADIDigitalOut extra_piston_thingy({{6,'A'}});
-inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>('X');
+inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>('D');
 inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('E');
 inline lib::Hang hang(hang_piston, extra_piston);
 
