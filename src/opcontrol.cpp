@@ -23,7 +23,6 @@ void opcontrol() {
   printf("opcontrol started\n");
 
   bool is_drive_reversed = false;
-  hang.set_state(lib::HangState::Expanded);
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
