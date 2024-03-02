@@ -19,7 +19,7 @@ void Hang::loop() {
       extra_piston->set_value(false);
       break;
     case HangState::Boosted:
-      piston->set_value(true);
+      piston->set_value(false);
       extra_piston->set_value(true);
       break;
   }

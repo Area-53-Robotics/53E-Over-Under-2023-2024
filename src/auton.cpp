@@ -9,7 +9,7 @@
 #include "main.h"
 #include "pros/rtos.hpp"
 
-ASSET(firstpttwo_txt);
+ASSET(first_txt);
 ASSET(sixballend_txt);
 
 /**
@@ -32,7 +32,7 @@ void autonomous() {
   switch (lib::selector::auton) {
     case 1:  // Offensive side
       printf("offensive side\n");
-
+/*
       hang.set_state(lib::HangState::Expanded);  // Release Intake
       chassis.moveToPoint(0, 35, 2000);          // Move In front Of goal
       chassis.waitUntilDone();
@@ -62,6 +62,54 @@ void autonomous() {
       chassis.moveToPoint(14, 48, 2000);  // push in all four triballs
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);
+
+      */
+      
+      intake.set_state(lib::IntakeState::Running);
+      flaps.set_state(lib::FlapState::Expanded);
+      chassis.turnTo(-32, 52, 800);
+      chassis.waitUntilDone();
+      flaps.set_state(lib::FlapState::Idle);
+      chassis.moveToPoint(-32, 52, 2000);//move to middle triball 
+      chassis.waitUntilDone();
+      chassis.turnTo(25, 45, 800);//turn to goal
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);
+      flaps.set_state(lib::FlapState::Expanded); 
+      chassis.moveToPoint(25, 45, 1800);//push into goal
+      chassis.waitUntilDone();
+      flaps.set_state(lib::FlapState::Idle);
+      intake.set_state(lib::IntakeState::Running);
+      chassis.moveToPoint(-30, 27, 1500);//intake left middle triball
+      chassis.waitUntilDone();
+      chassis.moveToPoint(0, 9, 1000);//move to start
+      chassis.waitUntilDone();
+      chassis.turnTo(15, 25, 800);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);//outtkae triball next to side goal
+      pros::delay(800);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(0, -9, 900);//move to start start
+      chassis.waitUntilDone();
+      chassis.turnTo(-36, -7, 900);//move under bar
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Running);
+      chassis.moveToPoint(-40, -7, 1800);//move under bar
+      chassis.waitUntilDone();
+      chassis.moveToPoint(5, -3, 1800, false);//move back to start
+      chassis.waitUntilDone();
+      flaps.set_state(lib::FlapState::Expanded);
+      chassis.turnTo(15, 25, 800);
+      chassis.waitUntilDone();
+      chassis.setPose(34, -62, 500);
+      chassis.follow(sixballend_txt, 14, 2500);//push into side goal 
+      chassis.waitUntilDone();
+      chassis.moveToPoint(5, 15, 1000, false);
+
+
+
+    
+
       /*
       //offensive w 9080c
       hang.set_state(lib::HangState::Expanded);
@@ -89,46 +137,43 @@ void autonomous() {
       chassis.moveToPoint(8, 0, 2000, false);  // move to starting points
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);
-      chassis.moveToPoint(-10, -10,
-                          1500);  // move back to start don't ask why its -10 bc
-                                  // the bot wasnt cooperating :/
+      chassis.moveToPoint(-10, -10, 1500);  // move back to start don't ask why its -10 bc
       chassis.waitUntilDone();
       chassis.turnTo(36, -15, 1000);  // turn to bar
       pros::delay(2000);
       chassis.moveToPoint(30, -8, 1000);  // touch bar w ziptie
 
+
       break;
     case 0:  // Skills
       printf("Skills\n");
+      intake.set_state(lib::IntakeState::Running);
+      pros::delay(1000);
       hang.set_state(lib::HangState::Expanded);
       chassis.moveToPoint(-20, 0, 1000);
-      chassis.turnTo(24, 24, 1000);
-      chassis.moveToPoint(-17, 0, 1000,
-                          false);  // back into zone for matchloading
+      chassis.turnTo(24, 17, 1000);
+      chassis.moveToPoint(-17, 0, 1000, false);  // back into zone for matchloading
       chassis.waitUntilDone();
-      flywheel.set_state(
-          lib::FlywheelState::Spinning);  // spin flywheel while touching match
-                                          // load zone
-      pros::delay(30000);
+      flywheel.set_state(lib::FlywheelState::Spinning);  // spin flywheel while touching match load zone
+      pros::delay(5000);
       chassis.waitUntilDone();
       hang.set_state(lib::HangState::Idle);
       flywheel.set_state(lib::FlywheelState::Idle);
-      chassis.turnTo(0, -6, 1000);
-      chassis.moveToPoint(0, -6, 2000);  // move back to starting point
+      chassis.waitUntilDone();
+      chassis.moveToPoint(0, -9, 1700);
       chassis.waitUntilDone();
       chassis.turnTo(60, 0, 1000);       // turn towards other side
-      chassis.moveToPoint(75, 0, 4000);  // move under bar to other side
+      chassis.moveToPoint(75, -7, 4000);  // move under bar to other side
       chassis.turnTo(88, 45, 1000);      // turn to goal
       chassis.waitUntilDone();
       chassis.moveToPose(91, 34, -90, 1500);  // push into goal from side
       chassis.waitUntilDone();
       chassis.moveToPose(88, 5, 0, 2000, {.forwards = false});  // move
-                                                                // backwards
       chassis.moveToPose(88, 50, 0, 2000);  // push into goal from side
       chassis.moveToPose(88, 0, 0, 2000, {.forwards = false});  // move
-                                                                // backwards
       chassis.turnTo(55, 40, 1000);
-      chassis.moveToPoint(55, 45, 3000);  // move to middle bar
+      chassis.moveToPoint(55, 32, 2000);  // move to middle bar
+      chassis.waitUntilDone();
       chassis.turnTo(85, 45, 1000);       // face goal
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Expanded);  // open wings
@@ -146,12 +191,11 @@ void autonomous() {
       chassis.moveToPoint(75, 70, 2000);
       chassis.waitUntilDone();
       chassis.moveToPoint(60, 65, 1500, false);
-      /*
-      chassis.moveToPoint(60, 55, 200
-      0, false);
+      chassis.moveToPoint(60, 55, 2000);
       flaps.set_state(lib::FlapState::Idle);
-      chassis.turnTo(55, 75, )
-      */
+      chassis.turnTo(55, 75, 0, false);
+  
+      
 
       break;
     case 3:  // Do nothing
