@@ -19,7 +19,7 @@
  */
 
 void initialize() {
-  // pros::lcd::initialize();
+  //pros::lcd::initialize();
   lib::selector::init();
 
   flywheel.set_state(lib::FlywheelState::Idle);
@@ -50,7 +50,8 @@ void initialize() {
       pros::delay(50);
     }
   });
-  //*/
+  */
+  
 }
 
 /**

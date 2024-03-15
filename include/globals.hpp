@@ -12,10 +12,11 @@
 #include "lib/subsystems/intake.hpp"
 #include "lib/utils/logger.hpp"
 #include "pros/adi.hpp"
+#include "pros/motors.h"
 #include "sylib/sylib.hpp"
 
 // This macro constant controls whether the subsystems send telemetry or not
-#define LOGGING
+//#define LOGGING
 #define LOGGING_FLYWHEEL_ROUTE 2
 #define LOGGING_INTAKE_ROUTE 4
 
@@ -66,8 +67,21 @@ inline auto intake_motor = std::make_shared<pros::Motor>(-15);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain
-inline pros::Motor_Group left_motors({-11, -19, 20});
-inline pros::Motor_Group right_motors({1, -8, 10});
+// drive motors
+inline pros::Motor lF(-11, pros::E_MOTOR_GEAR_BLUE); // left front motor. port 12, reversed
+inline pros::Motor lM(-19, pros::E_MOTOR_GEARSET_06); // left middle motor. port 11, reversed
+inline pros::Motor lB(20, pros::E_MOTOR_GEARSET_06); // left back motor. port 1, reversed
+inline pros::Motor rF(1, pros::E_MOTOR_GEARSET_06); // right front motor. port 2
+inline pros::Motor rM(-8, pros::E_MOTOR_GEARSET_06); // right middle motor. port 11
+inline pros::Motor rB(10, pros::E_MOTOR_GEARSET_06); // right back motor. port 13
+
+// motor groups
+inline pros::MotorGroup left_motors({lF, lM, lB}); // left motor group
+inline pros::MotorGroup right_motors({rF, rM, rB}); // right motor group
+
+
+//inline pros::Motor_Group left_motors({-11, -19, 20});
+//inline pros::Motor_Group right_motors({1, -8, 10});
 
 inline lemlib::Drivetrain drivetrain{
     &left_motors,   // left drivetrain motors
@@ -81,15 +95,15 @@ inline lemlib::Drivetrain drivetrain{
 inline pros::ADIEncoder left_enc('A', 'B', false);
 inline pros::ADIEncoder back_enc('G', 'H', false);
 
-inline lemlib::TrackingWheel left_tracking_wheel(&left_enc, 2.75, 3);
-inline lemlib::TrackingWheel back_tracking_wheel(&back_enc, 2.75, -4);
+//inline lemlib::TrackingWheel left_tracking_wheel(&left_enc, 2.75, 3);
+//inline lemlib::TrackingWheel back_tracking_wheel(&back_enc, 2.75, -4);
 
 inline pros::Imu inertial_sensor(16);
 
 inline lemlib::OdomSensors sensors{
-    &left_tracking_wheel,  // vertical tracking wheel 1
+    nullptr,  // vertical tracking wheel 1
     nullptr,               // vertical tracking wheel 2
-    &back_tracking_wheel,  // horizontal tracking wheel 1
+    nullptr,  // horizontal tracking wheel 1
     nullptr,               // horizontal tracking wheel 2
     &inertial_sensor       // inertial sensor
 };
