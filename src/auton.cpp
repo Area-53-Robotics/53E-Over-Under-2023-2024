@@ -67,7 +67,7 @@ void autonomous() {
       
       intake.set_state(lib::IntakeState::Running);
       flaps.set_state(lib::FlapState::Expanded);
-      chassis.turnToPoint(-32, 52, 800);
+      chassis.turnToPoint(-32, 52, 1000);
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);
       chassis.moveToPoint(-32, 52, 2000);//move to middle triball 
@@ -78,6 +78,7 @@ void autonomous() {
       flaps.set_state(lib::FlapState::Expanded); 
       chassis.moveToPoint(25, 45, 1800);//push into goal
       chassis.waitUntilDone();
+      /*
       flaps.set_state(lib::FlapState::Idle);
       intake.set_state(lib::IntakeState::Running);
       chassis.moveToPoint(-30, 27, 1500);//intake left middle triball
@@ -105,7 +106,7 @@ void autonomous() {
       chassis.follow(sixballend_txt, 14, 2500);//push into side goal 
       chassis.waitUntilDone();
       chassis.moveToPoint(5, 15, 1000, {.forwards=false});
-
+*/
 
 
     
