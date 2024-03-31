@@ -57,6 +57,9 @@ inline lib::Flywheel flywheel(flywheel_motor, flywheel_led);
 inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
+//PTO
+inline pros::ADIAnalogOut ptoPiston('A');
+
 // Hang
 inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>('E');
 inline auto hang_piston = std::make_shared<pros::ADIDigitalOut>('D');
@@ -68,12 +71,12 @@ inline lib::Intake intake(intake_motor);
 
 // Drivetrain
 // drive motors
-inline pros::Motor lF(-11, pros::E_MOTOR_GEAR_BLUE); // left front motor. port 12, reversed
-inline pros::Motor lM(-19, pros::E_MOTOR_GEARSET_06); // left middle motor. port 11, reversed
-inline pros::Motor lB(20, pros::E_MOTOR_GEARSET_06); // left back motor. port 1, reversed
-inline pros::Motor rF(1, pros::E_MOTOR_GEARSET_06); // right front motor. port 2
-inline pros::Motor rM(-8, pros::E_MOTOR_GEARSET_06); // right middle motor. port 11
-inline pros::Motor rB(10, pros::E_MOTOR_GEARSET_06); // right back motor. port 13
+inline pros::Motor lF(8, pros::E_MOTOR_GEAR_BLUE); // left front motor. port 12, 
+inline pros::Motor lM(9, pros::E_MOTOR_GEARSET_06); // left middle motor. port 11, 
+inline pros::Motor lB(10, pros::E_MOTOR_GEARSET_06); // left back motor. port 1, 
+inline pros::Motor rF(-18, pros::E_MOTOR_GEARSET_06); // right front motor. port 2 reversed
+inline pros::Motor rM(-19, pros::E_MOTOR_GEARSET_06); // right middle motor. port 11 reversed
+inline pros::Motor rB(-20, pros::E_MOTOR_GEARSET_06); // right back motor. port 13 reversed
 
 // motor groups
 inline pros::MotorGroup left_motors({lF, lM, lB}); // left motor group
@@ -92,8 +95,8 @@ inline lemlib::Drivetrain drivetrain{
     8               // chase power
 };
 
-inline pros::ADIEncoder left_enc('A', 'B', false);
-inline pros::ADIEncoder back_enc('G', 'H', false);
+//inline pros::ADIEncoder left_enc('A', 'B', false);
+//inline pros::ADIEncoder back_enc('G', 'H', false);
 
 //inline lemlib::TrackingWheel left_tracking_wheel(&left_enc, 2.75, 3);
 //inline lemlib::TrackingWheel back_tracking_wheel(&back_enc, 2.75, -4);
