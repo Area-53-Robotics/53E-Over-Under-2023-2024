@@ -42,12 +42,10 @@ void opcontrol() {
 
     // Hang control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
-      printf("workingone\n");
-      controller.rumble(".");
-      hang.toggle();
-    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-      printf("workingtwo\n");
-      hang.set_state(lib::HangState::Boosted);
+      controller.rumble("...");
+      ptoPistonTwo.set_value(0);
+    } else {
+      ptoPiston.set_value(1);
     }
 
     // Flywheel control
@@ -80,9 +78,9 @@ void opcontrol() {
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
     if (is_drive_reversed) {
-      chassis.tank(-right, -left, 5);
+      chassis.tank(-right, -left, 10);
     } else {
-      chassis.tank(left, right, 5);
+      chassis.tank(left, right, 10);
     }
 
     pros::delay(20);

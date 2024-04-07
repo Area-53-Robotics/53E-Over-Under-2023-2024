@@ -31,6 +31,7 @@ void initialize() {
   intake.start_task();
   flaps.start_task();
   hang.start_task();
+  ptoPistonTwo.set_value(1);
 
 #ifdef LOGGING
   logger.start_task();
