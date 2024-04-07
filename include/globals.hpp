@@ -59,6 +59,7 @@ inline lib::Flaps flaps(flaps_piston);
 
 //PTO
 inline pros::ADIAnalogOut ptoPiston('A');
+inline pros::ADIAnalogOut ptoPistonTwo('B');
 
 // Hang
 inline auto extra_piston = std::make_shared<pros::ADIDigitalOut>('E');

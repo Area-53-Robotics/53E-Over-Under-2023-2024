@@ -43,9 +43,9 @@ void opcontrol() {
     // Hang control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
       controller.rumble("...");
-      ptoPiston.set_value(1);
+      ptoPistonTwo.set_value(0);
     } else {
-      ptoPiston.set_value(0);
+      ptoPiston.set_value(1);
     }
 
     // Flywheel control
