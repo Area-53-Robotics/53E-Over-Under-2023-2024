@@ -48,7 +48,6 @@ void opcontrol() {
       ptoPiston.set_value(1);
     }
 
-
     /*
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       flywheel.set_state(lib::FlywheelState::Reversed);
