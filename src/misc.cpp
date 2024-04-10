@@ -22,15 +22,11 @@ void initialize() {
   //pros::lcd::initialize();
   lib::selector::init();
 
-  flywheel.set_state(lib::FlywheelState::Idle);
   sylib::initialize();
   chassis.calibrate();
 
-  flywheel.start_task();
-  flywheel.set_rate(50);
   intake.start_task();
   flaps.start_task();
-  hang.start_task();
   ptoPistonTwo.set_value(1);
 
 #ifdef LOGGING
