@@ -29,18 +29,18 @@ inline lib::Logger logger;
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-inline sylib::Addrled led(22, -1, 20);
+inline sylib::Addrled pto_led(22, 42, 20);
 
 // Flaps
 inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
 inline lib::Flaps flaps(flaps_piston);
 
 // PTO
-inline pros::ADIAnalogOut ptoPiston('A');
-inline pros::ADIAnalogOut ptoPistonTwo('B');
+inline pros::ADIAnalogOut pto_piston('A');
+inline pros::ADIAnalogOut pto_piston_two('B');
 
 // Intake
-inline auto intake_motor = std::make_shared<pros::Motor>(-15);
+inline auto intake_motor = std::make_shared<pros::Motor>(-12);
 inline lib::Intake intake(intake_motor);
 
 // Drivetrain
@@ -48,6 +48,7 @@ inline lib::Intake intake(intake_motor);
 inline pros::Motor lF(1, pros::E_MOTOR_GEAR_BLUE);
 inline pros::Motor lM(2, pros::E_MOTOR_GEARSET_06);
 inline pros::Motor lB(3, pros::E_MOTOR_GEARSET_06);
+
 inline pros::Motor rF(-8, pros::E_MOTOR_GEARSET_06);
 inline pros::Motor rM(-9, pros::E_MOTOR_GEARSET_06);
 inline pros::Motor rB(-10, pros::E_MOTOR_GEARSET_06);
@@ -76,7 +77,7 @@ inline lemlib::OdomSensors sensors{
 };
 
 // linear motion controller
-inline lemlib::ControllerSettings linearController(
+inline lemlib::ControllerSettings linear_controller(
     22,    // proportional gain (kP)
     0,     // integral gain (kI)
     10,    // derivative gain (kD)
@@ -89,7 +90,7 @@ inline lemlib::ControllerSettings linearController(
 );
 
 // angular motion controller
-inline lemlib::ControllerSettings angularController(
+inline lemlib::ControllerSettings angular_controller(
     2,    // proportional gain (kP)
     0,    // integral gain (kI)
     30,   // derivative gain (kD)
@@ -102,5 +103,5 @@ inline lemlib::ControllerSettings angularController(
 );
 
 // create the chassis
-inline lemlib::Chassis chassis(drivetrain, linearController, angularController,
-                               sensors);
+inline lemlib::Chassis chassis(drivetrain, linear_controller,
+                               angular_controller, sensors);

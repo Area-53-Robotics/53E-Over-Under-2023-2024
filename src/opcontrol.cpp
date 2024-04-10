@@ -21,8 +21,9 @@
  */
 void opcontrol() {
   printf("opcontrol started\n");
+  bool pto_enabled = true;
+  bool drive_reversed = false;
 
-  bool is_drive_reversed = false;
   while (true) {
     // Intake Control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -42,10 +43,17 @@ void opcontrol() {
 
     // Hang control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
-      controller.rumble("...");
-      ptoPistonTwo.set_value(0);
+      controller.rumble(".");
+      pto_enabled = !pto_enabled;
+    }
+
+    if (pto_enabled == false) {
+      
+      pto_piston_two.set_value(0);
+      pto_led.set_all(0x6AF844);
     } else {
-      ptoPiston.set_value(1);
+      pto_piston_two.set_value(1);
+      pto_led.set_all(0xFF5632);
     }
 
     /*
@@ -59,13 +67,13 @@ void opcontrol() {
     // Drivetrain control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
       controller.rumble(".");
-      is_drive_reversed = !is_drive_reversed;
+      drive_reversed = !drive_reversed;
     }
 
     int left = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    if (is_drive_reversed) {
+    if (drive_reversed) {
       chassis.tank(-right, -left, 10);
     } else {
       chassis.tank(left, right, 10);

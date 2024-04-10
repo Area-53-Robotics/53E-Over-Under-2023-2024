@@ -27,7 +27,7 @@ void initialize() {
 
   intake.start_task();
   flaps.start_task();
-  ptoPistonTwo.set_value(1);
+  pto_piston_two.set_value(1);
 
 #ifdef LOGGING
   logger.start_task();
@@ -35,8 +35,6 @@ void initialize() {
   logger.set_state(lib::LoggerMode::FirstInFirstOut);
 #endif
 
-  led.gradient(0x8B3AFD, 0x7DFF29, 0, 0, false, true);
-  led.cycle(*led, 1);
 
   /*
 
