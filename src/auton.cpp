@@ -153,17 +153,17 @@ void autonomous() {
       printf("Skills\n");
       intake.set_state(lib::IntakeState::Running);
       pros::delay(1000);
-      hang.set_state(lib::HangState::Expanded);
+      //hang.set_state(lib::HangState::Expanded);
       chassis.moveToPoint(-20, 0, 1000);
       chassis.turnToPoint(24, 17, 1000);
       chassis.moveToPoint(-17, 0, 1000, {.forwards=false});  // back into zone for matchloading
       chassis.waitUntilDone();
-      flywheel.set_state(lib::FlywheelState::Spinning);  // spin flywheel while touching match load zone
+      //flywheel.set_state(lib::FlywheelState::Spinning);  // spin flywheel while touching match load zone
       pros::delay(30000);
       chassis.waitUntilDone();
-      hang.set_state(lib::HangState::Idle);
+      //hang.set_state(lib::HangState::Idle);
       intake.set_state(lib::IntakeState::Idle);
-      flywheel.set_state(lib::FlywheelState::Idle);
+      //flywheel.set_state(lib::FlywheelState::Idle);
       chassis.moveToPoint(0, -9, 1700);
       chassis.waitUntilDone();
       chassis.turnToPoint(60, -2, 1000);    

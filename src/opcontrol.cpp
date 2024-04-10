@@ -48,17 +48,6 @@ void opcontrol() {
       ptoPiston.set_value(1);
     }
 
-    // Flywheel control
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
-      controller.rumble(".");
-      flywheel.toggle();
-    }
-
-    // Flywheel control
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      controller.rumble(".");
-      flywheel.set_state(lib::FlywheelState::Reversed);
-    }
 
     /*
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {

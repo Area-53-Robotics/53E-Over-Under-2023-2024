@@ -65,12 +65,6 @@ inline lemlib::Drivetrain drivetrain{
     8               // chase power
 };
 
-// inline pros::ADIEncoder left_enc('A', 'B', false);
-// inline pros::ADIEncoder back_enc('G', 'H', false);
-
-// inline lemlib::TrackingWheel left_tracking_wheel(&left_enc, 2.75, 3);
-// inline lemlib::TrackingWheel back_tracking_wheel(&back_enc, 2.75, -4);
-
 inline pros::Imu inertial_sensor(14);
 
 inline lemlib::OdomSensors sensors{
