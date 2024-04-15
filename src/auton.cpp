@@ -208,7 +208,7 @@ void autonomous() {
       chassis.moveToPoint(60, 65, 1500, {.forwards=false});
       chassis.moveToPoint(60, 55, 2000);
       flaps.set_state(lib::FlapState::Idle);
-      chassis.turnToPoint(55, 75, 0, false);
+      chassis.turnToPoint(55, 75, 0, {.forwards=false});
       break;
     case 3:  // Do nothing
       printf("nothing\n");
