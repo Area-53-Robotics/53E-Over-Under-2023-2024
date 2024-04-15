@@ -61,8 +61,8 @@ inline lemlib::Drivetrain drivetrain{
     &left_motors,   // left drivetrain motors
     &right_motors,  // right drivetrain motors
     10,             // track width // TODO:  measure this value correctly
-    4,              // wheel diameter
-    342.85,         // wheel rpm
+    2.75,           // wheel diameter
+    600,            // wheel rpm
     8               // chase power
 };
 
