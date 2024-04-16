@@ -82,22 +82,22 @@ inline lemlib::OdomSensors sensors{
 
 // linear motion controller
 inline lemlib::ControllerSettings linear_controller(
-    22,    // proportional gain (kP)
+    11,    // proportional gain (kP)
     0,     // integral gain (kI)
-    10,    // derivative gain (kD)
+    30,    // derivative gain (kD)
     3,     // anti windup
     1,     // small error range, in inches
     200,   // small error range timeout, in milliseconds
     2,     // large error range, in inches
     1000,  // large error range timeout, in milliseconds
-    5      // maximum acceleration (slew)
+    8      // maximum acceleration (slew)
 );
 
 // angular motion controller
 inline lemlib::ControllerSettings angular_controller(
     2,    // proportional gain (kP)
     0,    // integral gain (kI)
-    30,   // derivative gain (kD)
+    9,   // derivative gain (kD)
     3,    // anti windup
     1,    // small error range, in degrees
     100,  // small error range timeout, in milliseconds

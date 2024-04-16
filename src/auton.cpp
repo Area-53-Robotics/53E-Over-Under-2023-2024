@@ -29,10 +29,57 @@ ASSET(sixballend_txt);
 // chassis.follow(path_jerryio_txt, 15, 5000);
 
 void autonomous() {
-  switch (lib::selector::auton) {
+  switch (1) {
     case 1:  // Offensive side
-      printf("offensive side\n");
-      chassis.moveToPoint(0, 10, 3000);
+       printf("offensive side\n");
+      pto_piston_two.set_value(1); 
+      
+      horizontal_wings.set_state(lib::FlapState::Expanded);
+      pros::delay(1000);
+      horizontal_wings.set_state(lib::FlapState::Idle);
+      chassis.turnToPoint(-31, 44, 1000);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Running);
+      chassis.moveToPoint(-31, 44, 1500);//move to middle triball
+      pros::delay(1000);
+      chassis.waitUntilDone();
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.waitUntilDone(); 
+      chassis.turnToPoint(25, 45, 800);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);
+      horizontal_wings.set_state(lib::FlapState::Expanded);
+      chassis.moveToPoint(-4, 53, 1000);//push into goal
+      chassis.waitUntilDone();
+      horizontal_wings.set_state(lib::FlapState::Idle);
+      chassis.turnToPoint(-35, 32, 900);
+      intake.set_state(lib::IntakeState::Running);
+      chassis.moveToPoint(-29, 34, 1200);//move to left middle bar triball
+      chassis.waitUntilDone();
+      chassis.turnToPoint(2.4, 22.5, 1000);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.moveToPoint(2.4, 22.5, 1200);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);
+      pros::delay(1400);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(7, 0, 1000); //outtake intaken triball
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Running);
+      chassis.turnToPoint(-36, 0, 1000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(-29, -5, 1200);//move to triball under bar
+      chassis.waitUntilDone();
+      chassis.moveToPoint(2, -4, 1500, {.forwards=false});
+      chassis.waitUntilDone();
+      chassis.turnToPoint(17, 10, 1000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(17, 10, 2000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(20, 26, 2000);
+      
       /*
       flaps.set_state(lib::FlapState::Expanded);
       chassis.turnToPoint(-32, 52, 1000);
@@ -44,7 +91,7 @@ void autonomous() {
       chassis.turnToPoint(25, 45, 1000);//turn to goal
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Reversed);
-      flaps.set_state(lib::FlapState::Expanded);
+      flaps.set_state(lib::FlapState::Expanded)
       chassis.moveToPoint(25, 45, 2000);//push into goal
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);

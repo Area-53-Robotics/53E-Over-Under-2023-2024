@@ -20,6 +20,7 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+  //autonomous();
   printf("opcontrol started\n");
   bool pto_enabled = true;
   bool hang_deployed = false;

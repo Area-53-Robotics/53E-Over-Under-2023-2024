@@ -19,8 +19,8 @@
  */
 
 void initialize() {
-  // pros::lcd::initialize();
-  lib::selector::init();
+  pros::lcd::initialize();
+  //lib::selector::init();
 
   sylib::initialize();
   chassis.calibrate();
@@ -37,7 +37,7 @@ void initialize() {
   logger.set_state(lib::LoggerMode::FirstInFirstOut);
 #endif
 
-  /*
+  
 
     pros::Task screenTask([=]() {
       while (true) {
@@ -48,7 +48,7 @@ void initialize() {
       }
     });
 
-    */
+    
 }
 
 /**
