@@ -17,4 +17,12 @@ void Flaps::loop() {
   }
 }
 
+void Flaps::toggle() {
+  if (!(get_state() == FlapState::Expanded)) {
+    set_state(FlapState::Expanded);
+  } else {
+    set_state(FlapState::Idle);
+  }
+}
+
 }  // namespace lib

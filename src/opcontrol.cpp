@@ -22,6 +22,7 @@
 void opcontrol() {
   printf("opcontrol started\n");
   bool pto_enabled = true;
+  bool hang_deployed = false;
   bool drive_reversed = false;
 
   while (true) {
@@ -34,21 +35,36 @@ void opcontrol() {
       intake.set_state(lib::IntakeState::Idle);
     }
 
-    // Flaps control
+    // Wings control
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      flaps.set_state(lib::FlapState::Expanded);
+      horizontal_wings.set_state(lib::FlapState::Expanded);
     } else {
-      flaps.set_state(lib::FlapState::Idle);
+      horizontal_wings.set_state(lib::FlapState::Idle);
+    }
+
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+      controller.rumble(".");
+      vertical_wing.toggle();
     }
 
     // Hang control
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      controller.rumble(".");
+      hang_deployed = !hang_deployed;
+    }
+
+    if (hang_deployed == false) {
+      pto_piston.set_value(0);
+    } else {
+      pto_piston.set_value(1);
+    }
+
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
       controller.rumble(".");
       pto_enabled = !pto_enabled;
     }
 
     if (pto_enabled == false) {
-      
       pto_piston_two.set_value(0);
       pto_led.set_all(0x6AF844);
     } else {

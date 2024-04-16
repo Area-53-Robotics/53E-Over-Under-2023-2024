@@ -12,6 +12,8 @@ class Flaps : public StateMachine<FlapState>, public TaskWrapper {
  public:
   Flaps(std::shared_ptr<pros::ADIDigitalOut> piston);
 
+  void toggle();
+
  private:
   std::shared_ptr<pros::ADIDigitalOut> piston;
   void loop() override;

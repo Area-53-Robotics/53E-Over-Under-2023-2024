@@ -26,7 +26,9 @@ void initialize() {
   chassis.calibrate();
 
   intake.start_task();
-  flaps.start_task();
+  vertical_wing.start_task();
+  horizontal_wings.start_task();
+
   pto_piston_two.set_value(1);
 
 #ifdef LOGGING
@@ -34,7 +36,6 @@ void initialize() {
   logger.set_rate(10);
   logger.set_state(lib::LoggerMode::FirstInFirstOut);
 #endif
-
 
   /*
 

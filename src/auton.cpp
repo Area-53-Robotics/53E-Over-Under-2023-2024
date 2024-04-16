@@ -121,11 +121,11 @@ void autonomous() {
       chassis.turnToPoint(-45, 45, 1000);
       chassis.moveToPoint(-12, 10, 1000);  // unload triball from matchload zone
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Expanded);
+      horizontal_wings.set_state(lib::FlapState::Expanded);
       chassis.moveToPoint(8, 0, 2000,
                           {.forwards = false});  // move to starting points
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Idle);
+      horizontal_wings.set_state(lib::FlapState::Idle);
       chassis.moveToPoint(-10, -5,
                           1500);  // move back to start don't ask why its -10 bc
       chassis.waitUntilDone();
@@ -178,32 +178,32 @@ void autonomous() {
           lib::IntakeState::Reversed);    // move under bar to other side
       chassis.turnToPoint(90, 45, 1000);  // turn to goal
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Expanded);
+      horizontal_wings.set_state(lib::FlapState::Expanded);
       chassis.turnToPoint(97, 34, 1000);
       chassis.waitUntilDone();
       chassis.moveToPose(100, 60, -90, 1500);  // push into goal from side
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Idle);  // turn towards other side
+      horizontal_wings.set_state(lib::FlapState::Idle);  // turn towards other side
       chassis.moveToPose(94, 0, 0, 2000, {.forwards = false});  // move
       chassis.tank(127, 127);
       chassis.moveToPose(98, 59, 0, 2000);  // push into goal from side
       chassis.moveToPose(90, 0, 0, 2000, {.forwards = false});  // move
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Idle);
+      horizontal_wings.set_state(lib::FlapState::Idle);
       intake.set_state(lib::IntakeState::Idle);
       chassis.turnToPoint(55, 40, 1000);
       chassis.moveToPoint(55, 32, 2000);  // move to middle bar
       chassis.waitUntilDone();
       chassis.turnToPoint(85, 45, 1000);  // face goal
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Expanded);               // open wings
+      horizontal_wings.set_state(lib::FlapState::Expanded);               // open wings
       chassis.moveToPoint(85, 45, 2000);                       // push into goal
       chassis.moveToPoint(50, 45, 2000, {.forwards = false});  // move back
-      flaps.set_state(lib::FlapState::Idle);                   // close wings
+      horizontal_wings.set_state(lib::FlapState::Idle);                   // close wings
       chassis.moveToPoint(60, 70, 2000);  // move left to other side of goal
       chassis.turnToPoint(70, 70, 1000);  // turn to goal
       chassis.waitUntilDone();
-      flaps.set_state(lib::FlapState::Expanded);  // open wings
+      horizontal_wings.set_state(lib::FlapState::Expanded);  // open wings
       chassis.moveToPoint(90, 64, 2000);          // push into goal
       chassis.waitUntilDone();
       chassis.moveToPoint(50, 65, 1500, {.forwards = false});
@@ -212,7 +212,7 @@ void autonomous() {
       chassis.waitUntilDone();
       chassis.moveToPoint(60, 65, 1500, {.forwards = false});
       chassis.moveToPoint(60, 55, 2000);
-      flaps.set_state(lib::FlapState::Idle);
+      horizontal_wings.set_state(lib::FlapState::Idle);
       chassis.turnToPoint(55, 75, 0, {.forwards = false});
       break;
     case 3:  // Do nothing

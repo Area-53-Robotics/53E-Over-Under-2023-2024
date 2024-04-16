@@ -29,15 +29,19 @@ inline lib::Logger logger;
 
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-inline sylib::Addrled pto_led(22, 42, 20);
+inline sylib::Addrled pto_led(22, 22, 36);
 
-// Flaps
-inline auto flaps_piston = std::make_shared<pros::ADIDigitalOut>('C');
-inline lib::Flaps flaps(flaps_piston);
+// Wings
+inline auto horizontal_wings_piston =
+    std::make_shared<pros::ADIDigitalOut>('C');
+inline lib::Flaps horizontal_wings(horizontal_wings_piston);
+
+inline auto vert_wing_piston = std::make_shared<pros::ADIDigitalOut>('D');
+inline lib::Flaps vertical_wing(vert_wing_piston);
 
 // PTO
-inline pros::ADIAnalogOut pto_piston('A');
-inline pros::ADIAnalogOut pto_piston_two('B');
+inline pros::ADIDigitalOut pto_piston('A');
+inline pros::ADIDigitalOut pto_piston_two('B');
 
 // Intake
 inline auto intake_motor = std::make_shared<pros::Motor>(-12);
@@ -103,14 +107,15 @@ inline lemlib::ControllerSettings angular_controller(
 );
 
 // input curve for throttle input during driver control
-inline lemlib::ExpoDriveCurve throttleCurve(
+inline lemlib::ExpoDriveCurve throttle_curve(
     3,     // joystick deadband out of 127
-    10,    // minimum output where drivetrain will move out of 127
+    20,    // minimum output where drivetrain will move out of 127
     1.019  // expo curve gain
 );
 
 // input curve for steer input during driver control
-inline lemlib::ExpoDriveCurve steerCurve(
+// NOTE: we don't use this curve, so we don't need to tune it
+inline lemlib::ExpoDriveCurve steer_curve(
     3,     // joystick deadband out of 127
     10,    // minimum output where drivetrain will move out of 127
     1.019  // expo curve gain
