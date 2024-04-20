@@ -48,6 +48,21 @@ void opcontrol() {
       vertical_wing.toggle();
     }
 
+    //Kicker control
+    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      kicker_motor.move(127
+      );
+    } else{
+      kicker_motor.move(0);
+    }
+
+    //Jam Control
+    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
+      jam_piston.set_value(1);
+    } else{
+      jam_piston.set_value(0);
+    }
+
     // Hang control
     if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
       controller.rumble(".");

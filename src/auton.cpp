@@ -29,60 +29,78 @@ ASSET(sixballend_txt);
 // chassis.follow(path_jerryio_txt, 15, 5000);
 
 void autonomous() {
-  switch (1) {
+  switch (2) {
     case 1:  // Offensive side
-       printf("offensive side\n");
-      pto_piston_two.set_value(1); 
+      printf("offensive side\n");
+      pto_piston_two.set_value(1);
       
       horizontal_wings.set_state(lib::FlapState::Expanded);
       pros::delay(1000);
       horizontal_wings.set_state(lib::FlapState::Idle);
-      chassis.turnToPoint(-31, 44, 1000);
+      chassis.turnToPoint(-31, 46, 1000);
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Running);
-      chassis.moveToPoint(-31, 44, 1500);//move to middle triball
-      pros::delay(1000);
-      chassis.waitUntilDone();
+      chassis.moveToPoint(-31, 46, 1500);  // move to middle triball
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Idle);
-      chassis.waitUntilDone(); 
-      chassis.turnToPoint(25, 45, 800);
+      pros::delay(100);
+      chassis.waitUntilDone();
+      chassis.turnToPoint(25, 45, 1000);
+      pros::delay(700);
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Reversed);
       horizontal_wings.set_state(lib::FlapState::Expanded);
-      chassis.moveToPoint(-4, 53, 1000);//push into goal
+      chassis.moveToPoint(-3, 50, 1400);  // push into goal
       chassis.waitUntilDone();
       horizontal_wings.set_state(lib::FlapState::Idle);
-      chassis.turnToPoint(-35, 32, 900);
+      chassis.turnToPoint(-30, 31, 900);
       intake.set_state(lib::IntakeState::Running);
-      chassis.moveToPoint(-29, 34, 1200);//move to left middle bar triball
-      chassis.waitUntilDone();
-      chassis.turnToPoint(2.4, 22.5, 1000);
+      chassis.moveToPoint(-30, 30, 1200);  // move to left middle bar triball
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Idle);
-      chassis.moveToPoint(2.4, 22.5, 1200);
+      chassis.turnToPoint(12, 18, 1000);
       chassis.waitUntilDone();
-      intake.set_state(lib::IntakeState::Reversed);
+      intake.set_state(lib::IntakeState::Running);
+      chassis.moveToPoint(12, 18, 1200);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);//outtake triball next to goal
       pros::delay(1400);
       chassis.waitUntilDone();
-      chassis.moveToPoint(7, 0, 1000); //outtake intaken triball
+      chassis.moveToPoint(4, -5, 1500);  // move under bar
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Running);
-      chassis.turnToPoint(-36, 0, 1000);
+      chassis.turnToPoint(-30, -5, 1000);
       chassis.waitUntilDone();
-      chassis.moveToPoint(-29, -5, 1200);//move to triball under bar
+      chassis.moveToPoint(-30, -5, 1900);  // move to triball under bar
       chassis.waitUntilDone();
-      chassis.moveToPoint(2, -4, 1500, {.forwards=false});
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.moveToPoint(3, 4, 1500, {.forwards = false}); //move back to start
       chassis.waitUntilDone();
-      chassis.turnToPoint(17, 10, 1000);
+      chassis.turnToPoint(10, -1, 1000);//turn to start of matchload zone
       chassis.waitUntilDone();
-      chassis.moveToPoint(17, 10, 2000);
+      vertical_wing.set_state(lib::FlapState::Expanded);
+      pros::delay(200);
       chassis.waitUntilDone();
-      chassis.moveToPoint(20, 26, 2000);
-      
+      chassis.moveToPoint(10, -1, 2000);//move to start of match load zone
+      chassis.waitUntilDone();
+      chassis.turnToPoint(21, 10, 1000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(21, 10, 1400);//move to end of match load zone
+      chassis.waitUntilDone();
+      chassis.swingToHeading(270, lemlib::DriveSide::LEFT, 1200);
+      chassis.waitUntilDone();
+      chassis.turnToPoint(22, 24, 1500);
+      chassis.waitUntilDone();
+      vertical_wing.set_state(lib::FlapState::Idle);
+      pros::delay(200);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);
+      chassis.moveToPoint(22, 40, 2000);
+      chassis.waitUntilDone();
+ 
+
       /*
-      flaps.set_state(lib::FlapState::Expanded);
-      chassis.turnToPoint(-32, 52, 1000);
+      flaps.set_state(lib::FlapState::Expanded);      chassis.turnToPoint(-32, 52, 1000);
       chassis.waitUntilDone();
       flaps.set_state(lib::FlapState::Idle);
       chassis.moveToPoint(-35, 50, 2000);//move to middle triball
@@ -163,23 +181,54 @@ void autonomous() {
       break;
     case 2:  // Defensive
       printf("Defensive side\n");
-      // winpoint code ,,kl.'-[]=      chassis.moveToPoint(0, 10, 3000);
+      pto_piston_two.set_value(1);
+      chassis.turnToPoint(17, 47, 1000);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Running);
+      chassis.moveToPoint(17, 47, 2000);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Idle);
+      chassis.moveToPoint(0, 0, 2000, {.forwards=false});
+      chassis.waitUntilDone();
+      chassis.turnToPoint(10, -5, 1000);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);//outtake triball under middle bar
+      pros::delay(1000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(-16, 9, 2000, {.forwards=false});
+      chassis.waitUntilDone();
+      chassis.turnToPoint(-4, -4, 900);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(-4, -4, 1500);
+      chassis.waitUntilDone();
+      vertical_wing.set_state(lib::FlapState::Expanded);
+      pros::delay(100);
+      chassis.waitUntilDone();
+      chassis.turnToPoint(10, -5,   1000);
+      chassis.waitUntilDone();
+      chassis.moveToPoint(5, 0, 900);
+      chassis.waitUntilDone();
+      vertical_wing.set_state(lib::FlapState::Idle);
+      pros::delay(100);
+      chassis.waitUntilDone();
+      intake.set_state(lib::IntakeState::Reversed);
+      chassis.moveToPoint(32, -11, 3000);//move under bar
+      chassis.waitUntilDone();
 
+/*
+      // winpoint code ,,kl.'-[]=      chassis.moveToPoint(0, 10, 3000);
       chassis.turnToPoint(-45, 45, 1000);
       chassis.moveToPoint(-12, 10, 1000);  // unload triball from matchload zone
       chassis.waitUntilDone();
       horizontal_wings.set_state(lib::FlapState::Expanded);
-      chassis.moveToPoint(8, 0, 2000,
-                          {.forwards = false});  // move to starting points
+      chassis.moveToPoint(8, 0, 2000, {.forwards = false});  // move to starting points
       chassis.waitUntilDone();
       horizontal_wings.set_state(lib::FlapState::Idle);
-      chassis.moveToPoint(-10, -5,
-                          1500);  // move back to start don't ask why its -10 bc
+      chassis.moveToPoint(-10, -5, 1500);  // move back to start don't ask why its -10 bc
       chassis.waitUntilDone();
       chassis.turnToPoint(36, -4, 1000);  // turn to bar
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Reversed);  // outtake matchload
-                                                     // triball
       pros::delay(1500);
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Idle);  // set intake state to idle
@@ -195,7 +244,7 @@ void autonomous() {
       pros::delay(2000);
       intake.set_state(lib::IntakeState::Reversed);
       chassis.moveToPoint(36, -5, 1000);  // touch bar w ziptie
-
+*/
       break;
     case 0:  // Skills
       printf("Skills\n");
@@ -230,7 +279,8 @@ void autonomous() {
       chassis.waitUntilDone();
       chassis.moveToPose(100, 60, -90, 1500);  // push into goal from side
       chassis.waitUntilDone();
-      horizontal_wings.set_state(lib::FlapState::Idle);  // turn towards other side
+      horizontal_wings.set_state(
+          lib::FlapState::Idle);  // turn towards other side
       chassis.moveToPose(94, 0, 0, 2000, {.forwards = false});  // move
       chassis.tank(127, 127);
       chassis.moveToPose(98, 59, 0, 2000);  // push into goal from side
@@ -243,15 +293,15 @@ void autonomous() {
       chassis.waitUntilDone();
       chassis.turnToPoint(85, 45, 1000);  // face goal
       chassis.waitUntilDone();
-      horizontal_wings.set_state(lib::FlapState::Expanded);               // open wings
+      horizontal_wings.set_state(lib::FlapState::Expanded);    // open wings
       chassis.moveToPoint(85, 45, 2000);                       // push into goal
       chassis.moveToPoint(50, 45, 2000, {.forwards = false});  // move back
-      horizontal_wings.set_state(lib::FlapState::Idle);                   // close wings
+      horizontal_wings.set_state(lib::FlapState::Idle);        // close wings
       chassis.moveToPoint(60, 70, 2000);  // move left to other side of goal
       chassis.turnToPoint(70, 70, 1000);  // turn to goal
       chassis.waitUntilDone();
       horizontal_wings.set_state(lib::FlapState::Expanded);  // open wings
-      chassis.moveToPoint(90, 64, 2000);          // push into goal
+      chassis.moveToPoint(90, 64, 2000);                     // push into goal
       chassis.waitUntilDone();
       chassis.moveToPoint(50, 65, 1500, {.forwards = false});
       chassis.waitUntilDone();

@@ -26,7 +26,7 @@
 #ifdef LOGGING
 inline lib::Logger logger;
 #endif
-
+//leds
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 inline sylib::Addrled pto_led(22, 22, 36);
@@ -39,9 +39,15 @@ inline lib::Flaps horizontal_wings(horizontal_wings_piston);
 inline auto vert_wing_piston = std::make_shared<pros::ADIDigitalOut>('D');
 inline lib::Flaps vertical_wing(vert_wing_piston);
 
+//Kicker
+inline pros::Motor kicker_motor = pros::Motor(20);
+
 // PTO
 inline pros::ADIDigitalOut pto_piston('A');
 inline pros::ADIDigitalOut pto_piston_two('B');
+
+//Wheel Jam
+inline pros::ADIDigitalOut jam_piston('E');
 
 // Intake
 inline auto intake_motor = std::make_shared<pros::Motor>(-12);
