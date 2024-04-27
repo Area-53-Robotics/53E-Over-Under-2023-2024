@@ -42,9 +42,6 @@ void autonomous() {
       intake.set_state(lib::IntakeState::Running);
       chassis.moveToPoint(-31, 46, 1500);  // move to middle triball
       chassis.waitUntilDone();
-      intake.set_state(lib::IntakeState::Idle);
-      pros::delay(100);
-      chassis.waitUntilDone();
       chassis.turnToPoint(25, 45, 1000);
       pros::delay(700);
       chassis.waitUntilDone();
@@ -182,12 +179,12 @@ void autonomous() {
     case 2:  // Defensive
       printf("Defensive side\n");
       pto_piston_two.set_value(1);
+      intake.set_state(lib::IntakeState::Reversed);
       chassis.turnToPoint(17, 47, 1000);
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Running);
-      chassis.moveToPoint(17, 47, 2000);
+      chassis.moveToPoint(17, 49, 2000);
       chassis.waitUntilDone();
-      intake.set_state(lib::IntakeState::Idle);
       chassis.moveToPoint(0, 0, 2000, {.forwards=false});
       chassis.waitUntilDone();
       chassis.turnToPoint(10, -5, 1000);

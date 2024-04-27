@@ -29,11 +29,11 @@ inline lib::Logger logger;
 //leds
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-inline sylib::Addrled pto_led(22, 22, 36);
+inline sylib::Addrled pto_led(22, 7, 35);
 
 // Wings
 inline auto horizontal_wings_piston =
-    std::make_shared<pros::ADIDigitalOut>('C');
+    std::make_shared<pros::ADIDigitalOut>('B');
 inline lib::Flaps horizontal_wings(horizontal_wings_piston);
 
 inline auto vert_wing_piston = std::make_shared<pros::ADIDigitalOut>('D');
@@ -44,10 +44,10 @@ inline pros::Motor kicker_motor = pros::Motor(20);
 
 // PTO
 inline pros::ADIDigitalOut pto_piston('A');
-inline pros::ADIDigitalOut pto_piston_two('B');
+inline pros::ADIDigitalOut pto_piston_two('C');
 
 //Wheel Jam
-inline pros::ADIDigitalOut jam_piston('E');
+inline pros::ADIDigitalOut jam_piston('H');
 
 // Intake
 inline auto intake_motor = std::make_shared<pros::Motor>(-12);
@@ -60,7 +60,7 @@ inline pros::Motor lM(2, pros::E_MOTOR_GEARSET_06);
 inline pros::Motor lB(3, pros::E_MOTOR_GEARSET_06);
 
 inline pros::Motor rF(-8, pros::E_MOTOR_GEARSET_06);
-inline pros::Motor rM(-9, pros::E_MOTOR_GEARSET_06);
+inline pros::Motor rM(-7, pros::E_MOTOR_GEARSET_06);
 inline pros::Motor rB(-10, pros::E_MOTOR_GEARSET_06);
 
 // motor groups
@@ -76,7 +76,7 @@ inline lemlib::Drivetrain drivetrain{
     8               // chase power
 };
 
-inline pros::Imu inertial_sensor(14);
+inline pros::Imu inertial_sensor(11);
 
 inline lemlib::OdomSensors sensors{
     nullptr,          // vertical tracking wheel 1
@@ -114,8 +114,8 @@ inline lemlib::ControllerSettings angular_controller(
 
 // input curve for throttle input during driver control
 inline lemlib::ExpoDriveCurve throttle_curve(
-    3,     // joystick deadband out of 127
-    20,    // minimum output where drivetrain will move out of 127
+    0,     // joystick deadband out of 127
+    6,    // minimum output where drivetrain will move out of 127
     1.019  // expo curve gain
 );
 
