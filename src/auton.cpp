@@ -52,7 +52,7 @@ void autonomous() {
       horizontal_wings.set_state(lib::FlapState::Idle);
       chassis.turnToPoint(-30, 31, 900);
       intake.set_state(lib::IntakeState::Running);
-      chassis.moveToPoint(-30, 30, 1200);  // move to left middle bar triball
+      chassis.moveToPoint(-30, 30, 1200);  // move to left middle bar tribal l
       chassis.waitUntilDone();
       intake.set_state(lib::IntakeState::Idle);
       chassis.turnToPoint(12, 18, 1000);
